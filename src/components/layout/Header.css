@@ -1,0 +1,605 @@
+/* ============================================================
+   HEADER — Clean Navigation
+   Promo bar + sticky header with scroll behavior,
+   categories, wishlist, and mobile menu
+   ============================================================ */
+
+
+/* ============================================================
+   PROMO BAR — Top utility strip
+   ============================================================ */
+
+.promo-bar {
+  background: var(--color-dark-800, #1E1E1E);
+  border-bottom: 1px solid rgba(251, 249, 245, 0.06);
+}
+
+.promo-bar__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 36px;
+}
+
+@media (min-width: 769px) {
+  .promo-bar__inner {
+    padding: 0 40px;
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .promo-bar__inner {
+    padding: 0 60px;
+  }
+}
+
+.promo-bar__text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(251, 249, 245, 0.75);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.promo-bar__icon {
+  font-size: 14px;
+  color: var(--color-primary-500, #E8501A);
+  font-variation-settings: 'FILL' 0, 'wght' 300;
+}
+
+.promo-bar__divider {
+  width: 1px;
+  height: 14px;
+  background: rgba(251, 249, 245, 0.12);
+  flex-shrink: 0;
+}
+
+.promo-bar__link {
+  color: rgba(251, 249, 245, 0.85);
+  text-decoration: none;
+  transition: color 200ms;
+}
+
+.promo-bar__link:hover {
+  color: var(--color-primary-400, #FF8652);
+}
+
+@media (max-width: 768px) {
+  .promo-bar__text--hide-mobile,
+  .promo-bar__divider--hide-mobile {
+    display: none;
+  }
+
+  .promo-bar__text {
+    font-size: 10px;
+  }
+}
+
+
+/* ============================================================
+   HEADER — Main sticky nav
+   ============================================================ */
+
+.header {
+  background-color: rgba(251, 249, 245, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--color-wood-600, #704A2E);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(160, 82, 45, 0.08);
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.header.is-scrolled {
+  background-color: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 1px 0 rgba(160, 82, 45, 0.08),
+              0 4px 12px rgba(74, 38, 16, 0.04);
+}
+
+
+/* -- Inner Container -- */
+.header-inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+
+/* -- Top Bar (Pre-Scroll State) -- */
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px var(--margin-edge, 60px);
+  border-bottom: 1px solid rgba(160, 82, 45, 0.08);
+  max-height: 200px;
+  overflow: hidden;
+  opacity: 1;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header.is-scrolled .header-top {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+}
+
+.header-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-left a {
+  display: flex;
+  align-items: center;
+  color: var(--color-wood-600, #704A2E);
+  transition: color 0.2s ease;
+}
+
+.header-left a:hover {
+  color: var(--color-primary-600, #D04516);
+}
+
+.header-left .material-symbols-outlined {
+  font-size: 22px;
+}
+
+.header-top > .logo {
+  flex: 0;
+  text-align: center;
+  white-space: nowrap;
+  padding: 0 40px;
+}
+
+.header-actions {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.header-actions a {
+  display: flex;
+  align-items: center;
+  color: var(--color-wood-600, #704A2E);
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.header-actions a:hover {
+  color: var(--color-primary-600, #D04516);
+}
+
+.header-actions .material-symbols-outlined {
+  font-size: 22px;
+}
+
+
+/* -- Logo -- */
+.logo {
+  font-family: var(--font-display, 'Playfair Display', Georgia, serif) !important;
+  font-size: 26px;
+  font-weight: 500 !important;
+  letter-spacing: 0.05em;
+  color: var(--color-wood-600, #704A2E) !important;
+  transition: color 0.2s ease;
+  display: inline-block;
+}
+
+.logo:hover {
+  color: var(--color-primary-600, #D04516) !important;
+}
+
+
+/* -- Contact Link -- */
+.header-contact {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-wood-600, #704A2E);
+  font-weight: 500;
+  font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.header-contact:hover {
+  color: var(--color-primary-600, #D04516);
+}
+
+.header-contact .material-symbols-outlined {
+  font-size: 18px;
+}
+
+
+/* -- Navigation Bar -- */
+.header-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px var(--margin-edge, 60px);
+  width: 100%;
+  transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  gap: 24px;
+}
+
+/* Once the page scrolls the top bar away, the nav grows into a real
+   3-column layout: logo left, links center, actions right. */
+.header.is-scrolled .header-nav {
+  justify-content: space-between;
+}
+
+.header-nav-left {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.header.is-scrolled .header-nav-left {
+  flex: 1 1 0;
+}
+
+/* Nav logo is hidden until the top bar collapses on scroll. Specificity here
+   must beat `.header-nav a` (0,1,1), otherwise the generic nav-link opacity
+   rule would override opacity:0 and the logo would appear twice. */
+.header-nav .logo--nav {
+  font-size: 18px;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  text-transform: none;
+  letter-spacing: 0.05em;
+}
+
+.header.is-scrolled .header-nav .logo--nav {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.header-nav-center {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+
+.header-nav-right {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header.is-scrolled .header-nav-right {
+  flex: 1 1 0;
+}
+
+.header-nav a {
+  color: var(--color-wood-600, #704A2E);
+  opacity: 0.8;
+  transition: opacity 0.2s ease, color 0.2s ease;
+  font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  padding: 8px 0;
+}
+
+.header-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary-500, #E8501A);
+  transform: translateX(-50%);
+  border-radius: 1px;
+  transition: width 0.3s ease;
+}
+
+.header-nav a:hover {
+  opacity: 1;
+}
+
+.header-nav a:hover::after {
+  width: 100%;
+}
+
+.header-nav a:focus-visible {
+  outline: 2px solid var(--color-primary-500, #E8501A);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+
+/* -- Scrolled State Actions -- */
+.header-actions-scrolled {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+}
+
+.header.is-scrolled .header-actions-scrolled {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.header-actions-scrolled a {
+  display: flex;
+  align-items: center;
+  color: var(--color-wood-600, #704A2E);
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.header-actions-scrolled a:hover {
+  color: var(--color-primary-600, #D04516);
+}
+
+.header-actions-scrolled .material-symbols-outlined {
+  font-size: 22px;
+}
+
+
+/* -- Wishlist Badge -- */
+.header-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: var(--color-primary-500, #E8501A);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-shadow: 0 2px 6px rgba(232, 80, 26, 0.3);
+}
+
+
+/* ============================================================
+   MOBILE HEADER
+   ============================================================ */
+
+.header-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header-inner {
+    display: none;
+  }
+
+  .header-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px var(--margin-edge, 24px);
+  }
+
+  .header-mobile button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--color-wood-600, #704A2E);
+  }
+
+  .header-mobile .material-symbols-outlined {
+    color: var(--color-wood-600, #704A2E);
+    font-size: 24px;
+  }
+}
+
+
+/* ============================================================
+   MOBILE MENU OVERLAY
+   ============================================================ */
+
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 18, 18, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 2000;
+  animation: menuFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes menuFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  max-width: 85vw;
+  height: 100vh;
+  background: var(--surface-primary, var(--color-ivory-100, #FBF9F5));
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  z-index: 2001;
+  animation: menuSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  box-shadow: 4px 0 24px rgba(74, 38, 16, 0.2);
+}
+
+@keyframes menuSlideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+
+/* -- Mobile Menu Header -- */
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(112, 74, 46, 0.08);
+  margin-bottom: 20px;
+}
+
+.mobile-menu-header .logo {
+  font-size: 20px !important;
+}
+
+.mobile-menu-header button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--color-wood-600, #704A2E);
+}
+
+
+/* -- Mobile Menu Links -- */
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+
+.mobile-menu-links a {
+  display: block;
+  padding: 13px 0;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
+  color: var(--color-dark-900, #141414);
+  border-bottom: 1px solid rgba(112, 74, 46, 0.08);
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.mobile-menu-links a:hover {
+  color: var(--color-primary-600, #D04516);
+  padding-left: 8px;
+}
+
+/* Section labels in mobile menu */
+.mobile-menu-section-label {
+  font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-primary-500, #E8501A);
+  margin-top: 20px;
+  margin-bottom: 4px;
+  padding-bottom: 4px;
+}
+
+
+/* -- Mobile Menu Footer -- */
+.mobile-menu-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(112, 74, 46, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobile-menu-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
+  color: var(--color-wood-600, #704A2E);
+  padding: 12px 16px;
+  background: rgba(112, 74, 46, 0.04);
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mobile-menu-contact:hover {
+  background: rgba(112, 74, 46, 0.08);
+  color: var(--color-primary-600, #D04516);
+}
+
+.mobile-menu-contact--whatsapp {
+  background: rgba(37, 211, 102, 0.08);
+  color: #128C7E;
+}
+
+.mobile-menu-contact--whatsapp:hover {
+  background: rgba(37, 211, 102, 0.14);
+  color: #075E54;
+}
+
+.mobile-menu-contact .material-symbols-outlined {
+  font-size: 20px;
+}
+
+
+/* ============================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .header-top,
+  .header-nav {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .header-nav-center {
+    gap: 28px;
+  }
+
+  .header-nav a {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 900px) {
+  .header-nav-center {
+    gap: 20px;
+  }
+
+  .header-nav a {
+    font-size: 11.5px;
+  }
+}

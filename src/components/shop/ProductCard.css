@@ -1,0 +1,367 @@
+/* ============================================================
+   PRODUCT CARD — Impeccable Design Polish
+   Lifestyle-to-studio image swap on hover with wishlist and badges
+   ============================================================ */
+
+.pc-card {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pc-card:hover {
+  transform: translateY(-6px);
+}
+
+.pc-card:focus-visible {
+  outline: 2px solid var(--color-primary-500, #E8501A);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+
+/* ============================================================
+   IMAGE CONTAINER — Hover Image Swap
+   ============================================================ */
+
+.pc-image-wrap {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--color-ivory-200, #F5F0E8);
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.pc-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Default: lifestyle visible, studio hidden */
+.pc-img--lifestyle {
+  opacity: 1;
+  z-index: 1;
+}
+
+.pc-img--studio {
+  opacity: 0;
+  z-index: 2;
+}
+
+/* On hover: swap images with zoom */
+.pc-card:hover .pc-img--lifestyle {
+  opacity: 0;
+}
+
+.pc-card:hover .pc-img--studio {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+
+/* ── Image Loading Skeleton ── */
+.pc-img-skeleton {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(
+    90deg,
+    var(--color-ivory-200, #F5F0E8) 25%,
+    var(--color-ivory-100, #FBF9F5) 50%,
+    var(--color-ivory-200, #F5F0E8) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+
+/* ============================================================
+   BADGES & OVERLAYS
+   ============================================================ */
+
+/* Tag Badge (Top Left) */
+.pc-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 5;
+  background: rgba(248, 245, 241, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-wood-600, #704A2E);
+  padding: 5px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(74, 38, 16, 0.1);
+}
+
+/* Sale Badge (Top Right) */
+.pc-sale-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 5;
+  background: #C41E3A;
+  color: white;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(196, 30, 58, 0.3);
+}
+
+/* Wishlist Button (Bottom Right) */
+.pc-wishlist-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 5;
+  width: 42px;
+  height: 42px;
+  background: rgba(248, 245, 241, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translateY(8px) scale(0.9);
+  box-shadow: 0 4px 12px rgba(74, 38, 16, 0.15);
+}
+
+.pc-card:hover .pc-wishlist-btn {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.pc-wishlist-btn .material-symbols-outlined {
+  font-size: 20px;
+  color: var(--color-dark-900, #141414);
+  transition: color var(--duration-fast, 200ms) ease;
+}
+
+.pc-wishlist-btn--active {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  background: rgba(196, 30, 58, 0.1);
+}
+
+.pc-wishlist-btn--active .material-symbols-outlined {
+  color: #C41E3A !important;
+  font-variation-settings: 'FILL' 1;
+}
+
+.pc-wishlist-btn:hover {
+  background: white;
+  transform: scale(1.1) translateY(0) !important;
+  box-shadow: 0 6px 20px rgba(74, 38, 16, 0.2);
+}
+
+.pc-wishlist-btn:active {
+  transform: scale(1.05) translateY(0) !important;
+}
+
+
+/* ── Hover Overlay with "View Details" ── */
+.pc-hover-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: linear-gradient(
+    180deg,
+    transparent 60%,
+    rgba(18, 18, 18, 0.2) 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 20px;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.pc-card:hover .pc-hover-overlay {
+  opacity: 1;
+}
+
+.pc-quick-view {
+  background: var(--color-dark-900, #141414);
+  color: var(--color-ivory-100, #FBF9F5);
+  padding: 10px 22px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transform: translateY(8px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s ease;
+  box-shadow: 0 4px 16px rgba(18, 18, 18, 0.4);
+}
+
+.pc-card:hover .pc-quick-view {
+  transform: translateY(0);
+}
+
+
+/* ============================================================
+   PRODUCT INFO
+   ============================================================ */
+
+.pc-info {
+  padding: 0 4px;
+}
+
+.pc-material {
+  color: var(--color-success-700, #0E7C7B);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.pc-name {
+  font-family: var(--font-display, 'Playfair Display', Georgia, serif);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-dark-900, #141414);
+  margin-bottom: 8px;
+  text-wrap: balance;
+  transition: color var(--duration-fast, 200ms) ease;
+}
+
+.pc-card:hover .pc-name {
+  color: var(--color-primary-600, #D04516);
+}
+
+.pc-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.pc-price {
+  font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-wood-600, #704A2E);
+  letter-spacing: 0.02em;
+}
+
+.pc-price--sale {
+  color: #C41E3A;
+  font-weight: 700;
+}
+
+.pc-price--original {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-muted, var(--color-ivory-700, #B89968));
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+
+/* ============================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================ */
+
+/* Touch devices: always show wishlist button */
+@media (hover: none) {
+  .pc-wishlist-btn {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 640px) {
+  .pc-image-wrap {
+    margin-bottom: 12px;
+    border-radius: 6px;
+  }
+
+  .pc-tag {
+    top: 10px;
+    left: 10px;
+    font-size: 9px;
+    padding: 4px 10px;
+  }
+
+  .pc-sale-badge {
+    top: 10px;
+    right: 10px;
+    font-size: 9px;
+    padding: 4px 8px;
+  }
+
+  .pc-wishlist-btn {
+    width: 38px;
+    height: 38px;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .pc-wishlist-btn .material-symbols-outlined {
+    font-size: 18px;
+  }
+
+  .pc-info {
+    padding: 0 2px;
+  }
+
+  .pc-material {
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+
+  .pc-name {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  .pc-price {
+    font-size: 14px;
+  }
+
+  .pc-price--original {
+    font-size: 12px;
+  }
+
+  .pc-quick-view {
+    font-size: 10px;
+    padding: 8px 18px;
+  }
+}

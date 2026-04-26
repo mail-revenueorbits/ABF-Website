@@ -1,0 +1,1302 @@
+/* ============================================================
+   HOMEPAGE SECTIONS — AB Furniture
+   Redesigned for e-commerce density with premium feel.
+
+   Sections: Trust Bar, Categories, Featured, Shop by Room,
+   Product Rails, Materials, Social Proof, Testimonials, CTA
+   ============================================================ */
+
+
+/* ============================================================
+   SHARED — Section Layout
+   ============================================================ */
+
+.home-section {
+  padding: 40px 0 24px 0;
+}
+
+.home-section--dark {
+  background: var(--color-dark-800, #1E1E1E);
+  position: relative;
+}
+
+/* Subtle orange gradient line at top of dark sections */
+.home-section--dark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232, 80, 26, 0.15), transparent);
+}
+
+.home-section--ivory {
+  background: var(--color-ivory-200, #F5F0E8);
+}
+
+.home-section--compact {
+  padding: 32px 0 20px 0;
+}
+
+/* CTA banner section: tighter bottom padding so banner sits flush */
+.home-section--cta {
+  padding-bottom: 0;
+}
+
+.home-section__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (min-width: 769px) {
+  .home-section {
+    padding: 48px 0 28px 0;
+  }
+
+  .home-section--compact {
+    padding: 40px 0 24px 0;
+  }
+
+  .home-section__container {
+    padding: 0 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .home-section {
+    padding: 56px 0 32px 0;
+  }
+
+  .home-section--compact {
+    padding: 48px 0 28px 0;
+  }
+
+  .home-section__container {
+    padding: 0 60px;
+  }
+}
+
+.home-section__header {
+  margin-bottom: 32px;
+}
+
+.home-section__header--center {
+  text-align: center;
+}
+
+.home-section__overline {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary-500, #E8501A);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-section__overline::before {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--color-primary-500, #E8501A);
+  flex-shrink: 0;
+}
+
+.home-section__header--center .home-section__overline {
+  justify-content: center;
+}
+
+.home-section__header--center .home-section__overline::before {
+  display: none;
+}
+
+.home-section__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--text-primary, #141414);
+  margin-bottom: 14px;
+  text-wrap: balance;
+}
+
+.home-section--dark .home-section__title {
+  color: var(--color-ivory-100, #FBF9F5);
+}
+
+.home-section__subtitle {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-muted, #8A7A65);
+  max-width: 500px;
+  text-wrap: pretty;
+}
+
+.home-section__header--center .home-section__subtitle {
+  margin: 0 auto;
+}
+
+.home-section--dark .home-section__subtitle {
+  color: rgba(251, 249, 245, 0.75);
+}
+
+@media (min-width: 769px) {
+  .home-section__header {
+    margin-bottom: 40px;
+  }
+}
+
+
+/* ============================================================
+   TRUST BAR — Compact inline badges
+   Replaces the old full "Why Choose Us" section
+   ============================================================ */
+
+.trust-bar {
+  background: var(--color-dark-800, #1E1E1E);
+  border-bottom: 1px solid rgba(251, 249, 245, 0.06);
+}
+
+.trust-bar__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.trust-bar__container::-webkit-scrollbar {
+  display: none;
+}
+
+.trust-bar__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.trust-bar__icon {
+  font-size: 20px;
+  color: var(--color-primary-500, #E8501A);
+  font-variation-settings: 'FILL' 0, 'wght' 300;
+}
+
+.trust-bar__label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(251, 249, 245, 0.8);
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 769px) {
+  .trust-bar__container {
+    padding: 0 40px;
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  .trust-bar__item {
+    padding: 18px 16px;
+    gap: 10px;
+  }
+
+  .trust-bar__label {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .trust-bar__container {
+    padding: 0 60px;
+  }
+
+  .trust-bar__item {
+    padding: 20px 20px;
+  }
+}
+
+/* Dividers between items on desktop */
+@media (min-width: 769px) {
+  .trust-bar__item + .trust-bar__item {
+    border-left: 1px solid rgba(251, 249, 245, 0.08);
+  }
+}
+
+
+/* ============================================================
+   1. CATEGORIES GRID — Browse by Product Type
+   ============================================================ */
+
+.categories-browse {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .categories-browse {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .categories-browse {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+  }
+}
+
+.cat-card {
+  position: relative;
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  cursor: pointer;
+  background: var(--color-dark-900, #141414);
+  transition: transform var(--duration-slow, 700ms) var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1)),
+              box-shadow var(--duration-slow, 700ms) var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.cat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover, 0 16px 40px rgba(74, 38, 16, 0.14));
+}
+
+.cat-card:focus-visible {
+  outline: 2px solid var(--color-primary-500, #E8501A);
+  outline-offset: 3px;
+}
+
+@media (max-width: 639px) {
+  .cat-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    aspect-ratio: 2.2 / 1;
+  }
+}
+
+.cat-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-cinematic, 1s) var(--ease-out-expo, cubic-bezier(0.19, 1, 0.22, 1));
+}
+
+.cat-card:hover .cat-card__img {
+  transform: scale(1.06);
+}
+
+.cat-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 30%,
+    rgba(18, 18, 18, 0.75) 100%
+  );
+  transition: background var(--duration-slow, 700ms) var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.cat-card:hover .cat-card__overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(18, 18, 18, 0.05) 0%,
+    rgba(18, 18, 18, 0.82) 100%
+  );
+}
+
+.cat-card__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  transform: translateY(4px);
+  transition: transform var(--duration-slow, 700ms) var(--ease-out-expo, cubic-bezier(0.19, 1, 0.22, 1));
+}
+
+.cat-card:hover .cat-card__content {
+  transform: translateY(0);
+}
+
+.cat-card__count {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-primary-400, #FF8652);
+  margin-bottom: 6px;
+}
+
+.cat-card__name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  line-height: 1.25;
+}
+
+.cat-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(251, 249, 245, 0.7);
+  margin-top: 10px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--duration-slow, 700ms) var(--ease-out-expo, cubic-bezier(0.19, 1, 0.22, 1)),
+              transform var(--duration-slow, 700ms) var(--ease-out-expo, cubic-bezier(0.19, 1, 0.22, 1)),
+              gap var(--duration-normal, 400ms) var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.cat-card:hover .cat-card__link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cat-card__link span {
+  display: inline-block;
+  transition: transform var(--duration-normal, 400ms) var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.cat-card:hover .cat-card__link span {
+  transform: translateX(3px);
+}
+
+@media (max-width: 639px) {
+  .cat-card__name {
+    font-size: 16px;
+  }
+
+  .cat-card__content {
+    padding: 14px;
+  }
+}
+
+
+/* ============================================================
+   SHOP BY ROOM — 4 image cards with landscape aspect
+   ============================================================ */
+
+.rooms-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .rooms-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+}
+
+.room-card {
+  position: relative;
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  cursor: pointer;
+  background: var(--color-dark-900, #141414);
+  transition: transform var(--duration-slow, 700ms) var(--ease-smooth),
+              box-shadow var(--duration-slow, 700ms) var(--ease-smooth);
+}
+
+@media (min-width: 768px) {
+  .room-card {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+.room-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(74, 38, 16, 0.14);
+}
+
+.room-card:focus-visible {
+  outline: 2px solid var(--color-primary-500, #E8501A);
+  outline-offset: 3px;
+}
+
+.room-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-cinematic, 1s) var(--ease-out-expo);
+}
+
+.room-card:hover .room-card__img {
+  transform: scale(1.06);
+}
+
+.room-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(18, 18, 18, 0.75) 100%);
+}
+
+.room-card__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+}
+
+.room-card__items {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-primary-400, #FF8652);
+  margin-bottom: 6px;
+}
+
+.room-card__name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.room-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(251, 249, 245, 0.7);
+  margin-top: 8px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--duration-slow, 700ms) var(--ease-out-expo),
+              transform var(--duration-slow, 700ms) var(--ease-out-expo);
+}
+
+.room-card:hover .room-card__cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.room-card__cta span {
+  display: inline-block;
+  transition: transform var(--duration-normal, 400ms) var(--ease-smooth);
+}
+
+.room-card:hover .room-card__cta span {
+  transform: translateX(3px);
+}
+
+@media (max-width: 767px) {
+  .room-card__content {
+    padding: 14px;
+  }
+
+  .room-card__name {
+    font-size: 16px;
+  }
+}
+
+
+/* ============================================================
+   PRODUCT RAILS — New Arrivals + Bestsellers side by side
+   ============================================================ */
+
+.product-rails {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+@media (min-width: 1024px) {
+  .product-rails {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+.product-rail {
+  min-width: 0;
+}
+
+.product-rail__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-light, rgba(160, 82, 45, 0.08));
+}
+
+.product-rail__title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-primary, #141414);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-rail__title .material-symbols-outlined {
+  font-size: 22px;
+  color: var(--color-primary-500, #E8501A);
+  font-variation-settings: 'FILL' 0, 'wght' 300;
+}
+
+.product-rail__view-all {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-wood-600, #8B4513);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--duration-fast, 200ms);
+}
+
+.product-rail__view-all:hover {
+  color: var(--color-primary-500, #E8501A);
+}
+
+.product-rail__view-all span {
+  transition: transform var(--duration-fast, 200ms);
+}
+
+.product-rail__view-all:hover span {
+  transform: translateX(3px);
+}
+
+.product-rail__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+/* -- Rail Card (horizontal compact card) -- */
+.rail-card {
+  display: flex;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-light, rgba(160, 82, 45, 0.06));
+  background: var(--surface-card, white);
+  text-decoration: none;
+  transition: transform var(--duration-normal, 400ms) var(--ease-smooth),
+              box-shadow var(--duration-normal, 400ms) var(--ease-smooth),
+              border-color var(--duration-fast, 200ms);
+}
+
+.rail-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(74, 38, 16, 0.08);
+  border-color: rgba(160, 82, 45, 0.12);
+}
+
+.rail-card:focus-visible {
+  outline: 2px solid var(--color-primary-500, #E8501A);
+  outline-offset: 2px;
+}
+
+.rail-card__img-wrap {
+  width: 80px;
+  aspect-ratio: 4 / 5;
+  flex-shrink: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--color-ivory-200, #F5F0E8);
+  position: relative;
+}
+
+.rail-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow, 700ms) var(--ease-smooth);
+}
+
+.rail-card:hover .rail-card__img {
+  transform: scale(1.08);
+}
+
+.rail-card__badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #C41E3A;
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 2px;
+}
+
+.rail-card__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.rail-card__material {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-wood-600, #704A2E);
+  margin-bottom: 4px;
+}
+
+.rail-card__name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary, #141414);
+  line-height: 1.3;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color var(--duration-fast, 200ms);
+}
+
+.rail-card:hover .rail-card__name {
+  color: var(--color-primary-600, #D04516);
+}
+
+.rail-card__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.rail-card__price {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-wood-600, #704A2E);
+  font-variant-numeric: tabular-nums;
+}
+
+.rail-card__price--sale {
+  color: var(--color-primary-500, #E8501A);
+  font-weight: 700;
+}
+
+.rail-card__price--original {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted, #8A7A65);
+  text-decoration: line-through;
+}
+
+
+/* ============================================================
+   MATERIALS — Compact row
+   ============================================================ */
+
+.materials-row {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.materials-row__header {
+  flex-shrink: 0;
+}
+
+.materials-compact {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 640px) {
+  .materials-compact {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+}
+
+.material-chip {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 260px;
+  cursor: pointer;
+  display: block;
+  background: var(--color-dark-900, #141414);
+  transition: transform var(--duration-slow, 700ms) var(--ease-smooth),
+              box-shadow var(--duration-slow, 700ms) var(--ease-smooth);
+}
+
+@media (min-width: 769px) {
+  .material-chip {
+    height: 300px;
+  }
+}
+
+.material-chip:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(74, 38, 16, 0.2);
+}
+
+.material-chip:focus-visible {
+  outline: 2px solid var(--color-primary-500, #E8501A);
+  outline-offset: 3px;
+}
+
+.material-chip__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.65);
+  transition: transform var(--duration-cinematic, 1s) var(--ease-out-expo),
+              filter var(--duration-slow, 700ms) var(--ease-smooth);
+}
+
+.material-chip:hover .material-chip__img {
+  transform: scale(1.05);
+  filter: brightness(0.78);
+}
+
+.material-chip__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(18, 18, 18, 0.85) 100%);
+}
+
+.material-chip__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+}
+
+.material-chip__label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary-500, #E8501A);
+  margin-bottom: 6px;
+}
+
+.material-chip__name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-ivory-100, #FBF9F5);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.material-chip__desc {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(251, 249, 245, 0.7);
+  line-height: 1.6;
+  max-width: 260px;
+}
+
+
+/* ============================================================
+   STATS STRIP — Numbers bar
+   ============================================================ */
+
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: 1px solid var(--border-light, rgba(160, 82, 45, 0.08));
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface-card, white);
+}
+
+@media (min-width: 768px) {
+  .stats-strip {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stats-strip__item {
+  text-align: center;
+  padding: 28px 16px;
+  border-right: 1px solid var(--border-light, rgba(160, 82, 45, 0.06));
+  border-bottom: 1px solid var(--border-light, rgba(160, 82, 45, 0.06));
+}
+
+/* Remove right border on last of row */
+.stats-strip__item:nth-child(2n) {
+  border-right: none;
+}
+
+@media (min-width: 768px) {
+  .stats-strip__item {
+    padding: 36px 24px;
+    border-bottom: none;
+  }
+
+  .stats-strip__item:nth-child(2n) {
+    border-right: 1px solid var(--border-light, rgba(160, 82, 45, 0.06));
+  }
+
+  .stats-strip__item:last-child {
+    border-right: none;
+  }
+}
+
+/* Remove bottom border on last row */
+.stats-strip__item:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+
+.stats-strip__number {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 400;
+  color: var(--text-primary, #141414);
+  line-height: 1.1;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.stats-strip__icon {
+  font-size: 24px;
+  color: var(--color-warning-500, #F59E0B);
+  font-variation-settings: 'FILL' 1;
+}
+
+.stats-strip__label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted, #8A7A65);
+}
+
+
+/* ============================================================
+   TESTIMONIALS — Customer Review Cards
+   ============================================================ */
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+}
+
+.testimonial-card {
+  background: var(--surface-card, white);
+  border: 1px solid var(--border-light, rgba(160, 82, 45, 0.08));
+  border-radius: 10px;
+  padding: 32px 28px;
+  position: relative;
+  transition: transform var(--duration-slow, 700ms) var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1)),
+              box-shadow var(--duration-slow, 700ms) var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1)),
+              border-color var(--duration-normal, 400ms) var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover, 0 16px 40px rgba(74, 38, 16, 0.14));
+  border-color: rgba(160, 82, 45, 0.12);
+}
+
+@media (max-width: 768px) {
+  .testimonial-card {
+    padding: 24px 20px;
+  }
+}
+
+/* Reset blockquote default styles */
+blockquote.testimonial-card__text {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.testimonial-card__text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-primary, #141414);
+  margin-bottom: 24px;
+  font-style: italic;
+  text-wrap: pretty;
+}
+
+.testimonial-card__stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 14px;
+}
+
+.testimonial-card__star {
+  font-size: 15px;
+  color: var(--color-warning-500, #F59E0B);
+  font-variation-settings: 'FILL' 1;
+}
+
+.testimonial-card__author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-light, rgba(160, 82, 45, 0.08));
+}
+
+.testimonial-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-ivory-200, #F5F0E8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-wood-600, #8B4513);
+  flex-shrink: 0;
+}
+
+.testimonial-card__name {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary, #141414);
+  margin-bottom: 2px;
+  letter-spacing: 0.01em;
+}
+
+.testimonial-card__role {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted, #8A7A65);
+}
+
+
+/* ============================================================
+   WHATSAPP CTA BANNER — Visit Showroom
+   ============================================================ */
+
+.cta-banner {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  background: var(--color-dark-800, #1E1E1E);
+}
+
+.cta-banner__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.cta-banner__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  transition: transform 8s var(--ease-in-out, cubic-bezier(0.45, 0, 0.55, 1));
+}
+
+.cta-banner:hover .cta-banner__bg-img {
+  transform: scale(1.04);
+}
+
+.cta-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 30, 30, 0.95) 0%,
+    rgba(30, 30, 30, 0.7) 100%
+  );
+}
+
+.cta-banner__content {
+  position: relative;
+  z-index: 2;
+  padding: 48px 28px;
+  text-align: center;
+  width: 100%;
+}
+
+@media (min-width: 769px) {
+  .cta-banner {
+    min-height: 320px;
+  }
+
+  .cta-banner__content {
+    padding: 64px 60px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+}
+
+.cta-banner__overline {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary-500, #E8501A);
+  margin-bottom: 18px;
+}
+
+.cta-banner__title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 400;
+  color: var(--color-ivory-100, #FBF9F5);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+  text-wrap: balance;
+}
+
+.cta-banner__subtitle {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(251, 249, 245, 0.6);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: pretty;
+}
+
+.cta-banner__actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.cta-banner__btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: var(--color-primary-500, #E8501A);
+  color: white;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all var(--duration-slow, 700ms) var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1));
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner__btn-whatsapp::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--color-dark-900, #141414);
+  transition: left var(--duration-slow, 700ms) var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1));
+  z-index: 0;
+}
+
+.cta-banner__btn-whatsapp:hover::before {
+  left: 0;
+}
+
+.cta-banner__btn-whatsapp:hover {
+  color: var(--color-primary-400, #FF8652);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-orange-glow, 0 12px 32px rgba(232, 80, 26, 0.25));
+}
+
+.cta-banner__btn-whatsapp:active {
+  transform: translateY(0);
+}
+
+.cta-banner__btn-whatsapp svg,
+.cta-banner__btn-whatsapp span {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-banner__btn-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: transparent;
+  color: var(--color-ivory-100, #FBF9F5);
+  border: 1.5px solid rgba(251, 249, 245, 0.3);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all var(--duration-slow, 700ms) var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.cta-banner__btn-phone:hover {
+  background: var(--color-ivory-100, #FBF9F5);
+  color: var(--color-dark-900, #141414);
+  border-color: var(--color-ivory-100, #FBF9F5);
+  transform: translateY(-2px);
+}
+
+.cta-banner__btn-phone:active {
+  transform: translateY(0);
+}
+
+.cta-banner__btn-whatsapp .material-symbols-outlined,
+.cta-banner__btn-phone .material-symbols-outlined {
+  font-size: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ============================================================
+   SCROLL REVEAL — Intersection Observer Animations
+   ============================================================ */
+
+.home-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s var(--ease-out-expo, cubic-bezier(0.19, 1, 0.22, 1)),
+              transform 0.8s var(--ease-out-expo, cubic-bezier(0.19, 1, 0.22, 1));
+}
+
+.home-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.home-reveal--delay-1 { transition-delay: 0.1s; }
+.home-reveal--delay-2 { transition-delay: 0.2s; }
+.home-reveal--delay-3 { transition-delay: 0.3s; }
+.home-reveal--delay-4 { transition-delay: 0.4s; }
+.home-reveal--delay-5 { transition-delay: 0.5s; }
+
+
+/* ============================================================
+   REDUCED MOTION — Accessibility
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .home-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .cat-card,
+  .cat-card__img,
+  .cat-card__overlay,
+  .cat-card__content,
+  .cat-card__link,
+  .room-card,
+  .room-card__img,
+  .room-card__cta,
+  .material-chip,
+  .material-chip__img,
+  .testimonial-card,
+  .rail-card,
+  .rail-card__img,
+  .cta-banner__bg-img,
+  .cta-banner__btn-whatsapp,
+  .cta-banner__btn-phone {
+    transition: none !important;
+  }
+
+  .cat-card:hover,
+  .room-card:hover,
+  .material-chip:hover,
+  .testimonial-card:hover,
+  .rail-card:hover {
+    transform: none;
+  }
+
+  .cat-card__link,
+  .room-card__cta {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* ============================================================
+   TOUCH DEVICE — Always show CTAs on cards
+   ============================================================ */
+
+@media (hover: none) {
+  .cat-card__link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .room-card__cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cat-card__content {
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,233 @@
+/* ============================================================
+   FOOTER — Impeccable Design Polish
+   Dark footer with brand info, navigation links, and contact details
+   ============================================================ */
+
+.footer {
+  background-color: var(--color-dark-800, #1E1E1E);
+  color: var(--color-ivory-100, #FBF9F5);
+  font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
+  margin-top: auto;
+  position: relative;
+}
+
+/* Top accent line */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(232, 80, 26, 0.15),
+    transparent
+  );
+}
+
+
+/* ============================================================
+   FOOTER TOP — Brand + Navigation Grid
+   ============================================================ */
+
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 128px 0;
+  gap: 64px;
+}
+
+@media (min-width: 768px) {
+  .footer-top {
+    flex-direction: row;
+    gap: 96px;
+  }
+}
+
+
+/* ── Brand Section ── */
+.footer-brand {
+  max-width: 360px;
+}
+
+.footer-brand .logo {
+  font-weight: 600;
+  color: var(--color-ivory-100, #FBF9F5) !important;
+  font-size: 24px;
+  line-height: 1.2;
+  transition: color var(--duration-normal, 400ms) var(--ease-smooth, cubic-bezier(0.19, 1, 0.22, 1));
+}
+
+.footer-brand .logo:hover {
+  color: var(--color-primary-400, #FF8652) !important;
+}
+
+.footer-tagline {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--color-primary-500, #E8501A);
+  margin-top: 8px;
+  font-weight: 600;
+  font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
+}
+
+.footer-desc {
+  margin-top: 24px;
+  color: rgba(251, 249, 245, 0.65);
+  max-width: 320px;
+  line-height: 1.7;
+  font-size: 14px;
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+
+/* ── Links Container ── */
+.footer-links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+@media (min-width: 768px) {
+  .footer-links-container {
+    flex-direction: row;
+    gap: 96px;
+  }
+}
+
+
+/* ── Section Titles ── */
+.footer-section-title {
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--color-ivory-100, #FBF9F5);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
+}
+
+
+/* ── Footer Links ── */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-links a,
+.footer-links p {
+  color: rgba(251, 249, 245, 0.5);
+  transition: color var(--duration-normal, 400ms) var(--ease-smooth, cubic-bezier(0.19, 1, 0.22, 1)),
+              padding-left var(--duration-fast, 200ms) var(--ease-smooth, cubic-bezier(0.19, 1, 0.22, 1));
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.footer-links a:hover {
+  color: var(--color-primary-400, #FF8652);
+  padding-left: 4px;
+}
+
+.footer-links a:focus-visible {
+  outline: 2px solid var(--color-primary-500, #E8501A);
+  outline-offset: 4px;
+  border-radius: 2px;
+  color: var(--color-primary-400, #FF8652);
+}
+
+
+/* ── Special Link Styles ── */
+.footer-phone {
+  color: var(--color-primary-400, #FF8652) !important;
+  font-weight: 600 !important;
+}
+
+.footer-phone:hover {
+  color: var(--color-primary-500, #E8501A) !important;
+}
+
+.footer-whatsapp {
+  color: var(--color-primary-500, #E8501A) !important;
+  font-weight: 500 !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(232, 80, 26, 0.1);
+  border-radius: 6px;
+  margin-top: 4px;
+  transition: background var(--duration-fast, 200ms) var(--ease-smooth, cubic-bezier(0.19, 1, 0.22, 1)),
+              transform var(--duration-fast, 200ms) var(--ease-smooth, cubic-bezier(0.19, 1, 0.22, 1));
+}
+
+.footer-whatsapp:hover {
+  background: rgba(232, 80, 26, 0.18);
+  transform: translateX(4px);
+  padding-left: 20px;
+}
+
+
+/* ============================================================
+   FOOTER BOTTOM — Copyright Bar
+   ============================================================ */
+
+.footer-bottom {
+  padding: 24px 0;
+  border-top: 1px solid rgba(251, 249, 245, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(251, 249, 245, 0.4);
+  font-size: 13px;
+  font-weight: 400;
+  gap: 16px;
+}
+
+.footer-bottom p {
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .footer-top {
+    padding: 100px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-top {
+    padding: 80px 0;
+    gap: 48px;
+  }
+
+  .footer-brand {
+    max-width: 100%;
+  }
+
+  .footer-desc {
+    max-width: 100%;
+  }
+
+  .footer-links-container {
+    gap: 48px;
+  }
+}

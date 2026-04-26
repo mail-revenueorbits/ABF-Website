@@ -1,0 +1,83 @@
+/* ============================================================
+   FEATURED ON — Social Proof Logo Bar
+   ============================================================ */
+
+.featured-on {
+  padding: 48px 0;
+  text-align: center;
+  border-bottom: 1px solid var(--border-light, rgba(160, 82, 45, 0.08));
+}
+
+.featured-on__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (min-width: 769px) {
+  .featured-on {
+    padding: 64px 0;
+  }
+
+  .featured-on__container {
+    padding: 0 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .featured-on__container {
+    padding: 0 60px;
+  }
+}
+
+.featured-on__label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted, #8A7A65);
+  margin-bottom: 28px;
+}
+
+.featured-on__logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 769px) {
+  .featured-on__logos {
+    gap: 56px;
+  }
+}
+
+.featured-on__logo {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-muted, #8A7A65);
+  opacity: 0.5;
+  transition: opacity var(--duration-normal, 400ms) var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1));
+  user-select: none;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 769px) {
+  .featured-on__logo {
+    font-size: 20px;
+  }
+}
+
+.featured-on__logo:hover {
+  opacity: 0.8;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .featured-on__logo {
+    transition: none;
+  }
+}
