@@ -396,13 +396,29 @@
   gap: 16px;
 }
 
+.hero-mob-carousel-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.hero-mob-carousel-row::-webkit-scrollbar {
+  display: none;
+}
+
 .hero-mob-carousel-section {
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  height: 210px;
+  height: 220px;
   background: var(--color-dark-900, #141414);
   box-shadow: 0 4px 16px rgba(20, 20, 20, 0.08);
+  flex: 0 0 calc(50% - 6px);
+  scroll-snap-align: start;
 }
 
 .hero-mob-carousel-track {

@@ -69,9 +69,28 @@ def find_source_images(folder: Path) -> list[Path]:
     return candidates[:MAX_PER_PRODUCT]
 
 
+# Warm off-white backdrop for cut-out product shots. Matches the
+# --color-ivory-200 token used by the product cards in the UI so
+# a cut-out image and its card container read as one surface.
+BACKDROP = (245, 240, 232)
+
+
+def flatten_transparent(img: Image.Image) -> Image.Image:
+    """Composite any transparency (PNG alpha, palette transparency, LA mode)
+    over BACKDROP. Without this, `.convert("RGB")` fills transparent pixels
+    with BLACK, which is what was showing up on cut-out product photos."""
+    img = ImageOps.exif_transpose(img)
+    if img.mode in ("RGBA", "LA") or (img.mode == "P" and "transparency" in img.info):
+        rgba = img.convert("RGBA")
+        bg = Image.new("RGBA", rgba.size, BACKDROP + (255,))
+        bg.alpha_composite(rgba)
+        return bg.convert("RGB")
+    return img.convert("RGB")
+
+
 def to_4_5(img: Image.Image) -> Image.Image:
-    """Center-crop to 4:5, resize to TARGET_W x TARGET_H, return RGB."""
-    img = ImageOps.exif_transpose(img).convert("RGB")
+    """Flatten any transparency, center-crop to 4:5, resize to target size."""
+    img = flatten_transparent(img)
     src_w, src_h = img.size
     target_ratio = TARGET_W / TARGET_H  # 0.8
     src_ratio = src_w / src_h

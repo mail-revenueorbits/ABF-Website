@@ -130,12 +130,14 @@ const MOBILE_CAROUSELS = [
 function HeroMobileCarousels() {
   return (
     <div className="hero-mob-carousels">
-      {MOBILE_CAROUSELS.map((carousel) => (
-        <MobileCarouselSection
-          key={carousel.id}
-          slides={carousel.slides}
-        />
-      ))}
+      <div className="hero-mob-carousel-row">
+        {MOBILE_CAROUSELS.map((carousel) => (
+          <MobileCarouselSection
+            key={carousel.id}
+            slides={carousel.slides}
+          />
+        ))}
+      </div>
 
       {/* WhatsApp CTA banner at end */}
       <a
