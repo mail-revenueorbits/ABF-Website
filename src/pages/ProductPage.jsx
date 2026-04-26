@@ -12,6 +12,25 @@ import { useRecentlyViewed } from '../hooks/useRecentlyViewed';
 import { getWhatsAppLink } from '../services/whatsapp';
 import ProductCard from '../components/shop/ProductCard';
 
+// Admin-edited products store descriptions as WYSIWYG HTML. The PDP renders
+// descriptions as plain text inside a <p>, so strip tags and collapse
+// whitespace before display. Using a regex (not DOMParser) keeps this SSR-safe.
+function plainDescription(raw) {
+  if (!raw) return '';
+  return String(raw)
+    .replace(/<\s*br\s*\/?\s*>/gi, '\n')
+    .replace(/<\/p\s*>\s*<p[^>]*>/gi, '\n\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
 function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -256,7 +275,7 @@ function ProductPage() {
             </div>
 
             {/* Description */}
-            <p className="pdp-description">{product.description}</p>
+            <p className="pdp-description">{plainDescription(product.description)}</p>
 
             {/* Color/Fabric Variants */}
             {product.variants.length > 0 && (

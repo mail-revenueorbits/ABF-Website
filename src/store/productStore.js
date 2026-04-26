@@ -34,11 +34,13 @@ import { products as CATALOG_PRODUCTS } from '../data/products';
  * }
  */
 
-// Admin product shape derived from the canonical catalogue.
-// Mapping: flatten `description` to the HTML field the admin CRUD expects.
+// Seed the admin store with plain-text descriptions. The admin's rich-text
+// editor will convert to HTML on edit, which we strip back to plain text for
+// display on the PDP. Keeping one canonical field avoids divergence between
+// seeded and admin-edited products.
 const SEED_PRODUCTS = CATALOG_PRODUCTS.map((p) => ({
   ...p,
-  description: p.descriptionHtml || `<p>${p.description || ''}</p>`,
+  description: p.description || '',
 }));
 
 const useProductStore = create(
@@ -126,7 +128,7 @@ const useProductStore = create(
     {
       // Bump the key when the catalogue schema changes so existing clients
       // refresh their localStorage with the new seed data.
-      name: 'abf-products-v2',
+      name: 'abf-products-v3',
     }
   )
 );

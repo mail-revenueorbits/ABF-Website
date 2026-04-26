@@ -74,7 +74,11 @@
 
 .pdp-main-image {
   width: 100%;
+  /* 4:5 portrait by default, but never taller than the viewport allows.
+     On a 820px-tall laptop, chrome + breadcrumbs eat ~200px, so the image
+     caps just under 620px; on desktop monitors it grows up to 720px. */
   aspect-ratio: 4 / 5;
+  max-height: min(72vh, 720px);
   background-color: var(--ivory-warm);
   overflow: hidden;
   cursor: crosshair;
@@ -572,7 +576,12 @@
   padding: 80px var(--margin-edge);
 }
 
-/* ===== MOBILE ADJUSTMENTS ===== */
+/* ============================================================
+   MOBILE ADJUSTMENTS (<=640px)
+   Action-row rhythm: qty on its own row (compact), Buy Now
+   full-width (tall), then a 2-up row of Wishlist + Designer.
+   Every touch target >=48px (AA) with consistent 12px gaps.
+   ============================================================ */
 @media (max-width: 640px) {
   .pdp {
     padding: 16px var(--margin-edge) 0;
@@ -583,25 +592,117 @@
     font-size: 11px;
   }
 
+  /* Cap the gallery so a product fits above the fold on an average
+     phone (375x667 and up) without needing to scroll just to see it. */
+  .pdp-main-image {
+    max-height: min(62vh, 520px);
+  }
+
   .pdp-title {
-    font-size: 26px;
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .pdp-price-block {
+    margin-bottom: 12px;
   }
 
   .pdp-price--current {
     font-size: 22px;
   }
 
-  .pdp-secondary-actions {
+  .pdp-description {
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+
+  /* Row 1: quantity selector. Own row, left-aligned, touch-friendly. */
+  .pdp-actions {
     flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .pdp-qty {
+    align-self: flex-start;
+    height: 48px;
+  }
+
+  .pdp-qty-btn {
+    width: 48px;
+  }
+
+  .pdp-qty-value {
+    width: 44px;
+    font-size: 16px;
+  }
+
+  /* Row 2: primary CTA, full-width and tall. */
+  .pdp-buy-btn {
+    width: 100%;
+    height: 56px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+
+  /* Row 3: two equal-width secondary CTAs on one row
+     (stacked column looked sparse and made the page scroll longer). */
+  .pdp-secondary-actions {
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .pdp-wishlist-btn,
+  .pdp-whatsapp-btn {
+    height: 48px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    padding: 0 10px;
+    gap: 6px;
+  }
+
+  .pdp-wishlist-btn .material-symbols-outlined,
+  .pdp-whatsapp-btn .material-symbols-outlined {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* Stretched across 2 columns on phone, so the labels can wrap if the
+     translation is long. Keep them readable. */
+  .pdp-wishlist-btn span:not(.material-symbols-outlined),
+  .pdp-whatsapp-btn span:not(.material-symbols-outlined) {
+    text-align: center;
   }
 
   .pdp-trust-signals {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+    padding: 20px 0;
+  }
+
+  .pdp-trust-item {
+    font-size: 11px;
   }
 
   .pdp-related-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
+  }
+}
+
+/* Very narrow phones (<=380px): drop secondary actions to a column so the
+   "Talk to a Designer" label has room without truncating. */
+@media (max-width: 380px) {
+  .pdp-secondary-actions {
+    flex-direction: column;
+  }
+
+  .pdp-wishlist-btn,
+  .pdp-whatsapp-btn {
+    width: 100%;
   }
 }
