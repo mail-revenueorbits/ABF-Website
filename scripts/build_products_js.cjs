@@ -138,6 +138,40 @@ function dedupe(products) {
 const raw = JSON.parse(fs.readFileSync(PRODUCTS_JSON, 'utf8'));
 const manifest = JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
 
+// Priority products the owner wants showcased prominently on the homepage.
+// Ordered — lower index = more prominent placement.
+const HOMEPAGE_PRIORITY = [
+  'C4-03', // Floating Wall Shelf
+  'C4-04', // Floating Wall Shelf (Style 2)
+  'C4-05', // Floating Wall Shelf (Style 3)
+  'C4-06', // Floating Wall Shelf (Style 4)
+  'C4-08', // Corner Shelf Unit
+  'C4-10', // Dressing Console Table
+  'C4-11', // Console Set
+  'C4-25', // Vanity Dressing Table (Gold)
+  'C4-26', // Dressing Table
+  'C4-27', // Mirror (Zircote)
+  'C4-28', // Mirror 2
+  'C4-29', // Mirror 3
+  'C5-06', // Glass-Top Coffee Table
+  'C5-08', // Cafe Chair 1
+  'C5-09', // Cafe Chair 2
+  'C5-10', // Cafe Chair 3
+];
+const PRIORITY_RANK = new Map(HOMEPAGE_PRIORITY.map((id, i) => [id, i]));
+
+// Curtain display order: the C4-31..C4-53 range has cleaner product photos
+// than the older C3 and C1 curtains, so push those to the front.
+function curtainRank(id) {
+  const m = id.match(/^C4-(\d+)$/);
+  if (m) {
+    const n = parseInt(m[1], 10);
+    if (n >= 31 && n <= 53) return 0; // top priority
+  }
+  if (id.startsWith('C3-')) return 1;
+  return 2;
+}
+
 const unique = dedupe(raw);
 
 // Stable ordering: by campaign then by numeric tail.
@@ -169,12 +203,30 @@ const products = unique
 
     // Basic popularity: higher for priced items, with a stable per-id jitter.
     const hashJit = ((p.id.charCodeAt(0) * 31 + p.id.charCodeAt(p.id.length - 1)) % 15);
-    const popularity = price > 0 ? 80 + hashJit : 60 + hashJit;
+    let popularity = price > 0 ? 80 + hashJit : 60 + hashJit;
 
-    // Feature a balanced set across categories: 1 in every 4 products.
-    const featured = idx % 4 === 0;
+    // Owner-specified showcase wins over all other popularity signals.
+    const priorityIdx = PRIORITY_RANK.get(p.id);
+    const isPriority = priorityIdx !== undefined;
+    if (isPriority) popularity = 1000 - priorityIdx;
+
+    // For curtains, surface the C4-31..C4-53 range above older shots.
+    if (cat.slug === 'curtains') {
+      popularity = 900 - curtainRank(p.id) * 200 - idx;
+    }
+
+    // Feature the priority picks + a balanced background set across
+    // categories (1 in every 6 of the non-priority products).
+    const featured = isPriority || idx % 6 === 0;
     if (featured) featuredCount += 1;
     categoryCounts[cat.slug] = (categoryCounts[cat.slug] || 0) + 1;
+
+    // Priority products get a newer timestamp so they bubble up in
+    // updatedAt-sorted rails (FeaturedCollection, Bestsellers, New Arrivals).
+    const createdAt = isPriority
+      ? new Date(Date.UTC(2026, 3, 26, 12, 0, -priorityIdx)).toISOString()
+      : now;
+    const updatedAt = createdAt;
 
     const tagsList = [];
     if (subcategory) tagsList.push(subcategory.toLowerCase());
@@ -235,8 +287,8 @@ const products = unique
       tags: tagsList,
       popularity,
 
-      createdAt: now,
-      updatedAt: now,
+      createdAt,
+      updatedAt,
     };
   });
 

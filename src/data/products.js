@@ -389,7 +389,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "bed"
@@ -503,7 +503,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "sofa"
@@ -619,7 +619,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "office chair"
@@ -969,7 +969,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 80,
+    "popularity": 486,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -1024,7 +1024,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 81,
+    "popularity": 485,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -1073,12 +1073,12 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "curtain"
     ],
-    "popularity": 82,
+    "popularity": 484,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -1133,7 +1133,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 83,
+    "popularity": 483,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -1181,12 +1181,12 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "curtain"
     ],
-    "popularity": 84,
+    "popularity": 482,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -1237,7 +1237,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 90,
+    "popularity": 481,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -1283,7 +1283,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "default"
@@ -1722,7 +1722,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "dining set"
@@ -1833,7 +1833,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "tea table"
@@ -1950,7 +1950,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "cafe chair"
@@ -2124,7 +2124,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 90,
+    "popularity": 465,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -2178,7 +2178,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 91,
+    "popularity": 464,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -2232,7 +2232,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 92,
+    "popularity": 463,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -2286,7 +2286,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 93,
+    "popularity": 462,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -2390,12 +2390,12 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "curtain"
     ],
-    "popularity": 80,
+    "popularity": 460,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -2495,7 +2495,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "bed",
@@ -2605,7 +2605,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "bed",
@@ -2830,7 +2830,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 82,
+    "popularity": 652,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -2886,7 +2886,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 83,
+    "popularity": 651,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -2942,7 +2942,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 84,
+    "popularity": 650,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -2998,7 +2998,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 90,
+    "popularity": 649,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -3049,12 +3049,12 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "curtain"
     ],
-    "popularity": 91,
+    "popularity": 648,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -3110,7 +3110,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 92,
+    "popularity": 647,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -3161,12 +3161,12 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "curtain"
     ],
-    "popularity": 93,
+    "popularity": 646,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -3222,7 +3222,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 94,
+    "popularity": 645,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -3273,12 +3273,12 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "curtain"
     ],
-    "popularity": 80,
+    "popularity": 644,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -3334,7 +3334,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 81,
+    "popularity": 643,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -3390,7 +3390,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 82,
+    "popularity": 642,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -3446,7 +3446,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 83,
+    "popularity": 641,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -3502,7 +3502,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 84,
+    "popularity": 640,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -3558,7 +3558,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 90,
+    "popularity": 639,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -3614,7 +3614,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 91,
+    "popularity": 638,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -3670,7 +3670,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 92,
+    "popularity": 637,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -3717,12 +3717,12 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "curtain"
     ],
-    "popularity": 93,
+    "popularity": 636,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -3827,7 +3827,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "wardrobe",
@@ -3887,15 +3887,15 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "shelf",
       "sheesham"
     ],
-    "popularity": 93,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 1000,
+    "createdAt": "2026-04-26T12:00:00.000Z",
+    "updatedAt": "2026-04-26T12:00:00.000Z"
   },
   {
     "id": "C4-04",
@@ -3953,9 +3953,9 @@ export const products = [
       "shelf",
       "sheesham"
     ],
-    "popularity": 94,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 999,
+    "createdAt": "2026-04-26T11:59:59.000Z",
+    "updatedAt": "2026-04-26T11:59:59.000Z"
   },
   {
     "id": "C4-05",
@@ -4005,15 +4005,15 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "shelf",
       "sheesham"
     ],
-    "popularity": 80,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 998,
+    "createdAt": "2026-04-26T11:59:58.000Z",
+    "updatedAt": "2026-04-26T11:59:58.000Z"
   },
   {
     "id": "C4-06",
@@ -4065,15 +4065,15 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "shelf",
       "sheesham"
     ],
-    "popularity": 81,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 997,
+    "createdAt": "2026-04-26T11:59:57.000Z",
+    "updatedAt": "2026-04-26T11:59:57.000Z"
   },
   {
     "id": "C4-07",
@@ -4187,9 +4187,9 @@ export const products = [
       "shelf",
       "sheesham"
     ],
-    "popularity": 83,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 996,
+    "createdAt": "2026-04-26T11:59:56.000Z",
+    "updatedAt": "2026-04-26T11:59:56.000Z"
   },
   {
     "id": "C4-10",
@@ -4239,15 +4239,15 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "console table",
       "teak"
     ],
-    "popularity": 90,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 995,
+    "createdAt": "2026-04-26T11:59:55.000Z",
+    "updatedAt": "2026-04-26T11:59:55.000Z"
   },
   {
     "id": "C4-11",
@@ -4297,15 +4297,15 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "console table",
       "sheesham"
     ],
-    "popularity": 91,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 994,
+    "createdAt": "2026-04-26T11:59:54.000Z",
+    "updatedAt": "2026-04-26T11:59:54.000Z"
   },
   {
     "id": "C4-12",
@@ -4405,7 +4405,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "chair"
@@ -4513,7 +4513,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "chair"
@@ -4627,7 +4627,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "office chair"
@@ -5075,9 +5075,9 @@ export const products = [
       "dressing table",
       "teak"
     ],
-    "popularity": 60,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 993,
+    "createdAt": "2026-04-26T11:59:53.000Z",
+    "updatedAt": "2026-04-26T11:59:53.000Z"
   },
   {
     "id": "C4-26",
@@ -5125,14 +5125,14 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "dressing table"
     ],
-    "popularity": 81,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 992,
+    "createdAt": "2026-04-26T11:59:52.000Z",
+    "updatedAt": "2026-04-26T11:59:52.000Z"
   },
   {
     "id": "C4-27",
@@ -5179,14 +5179,14 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "mirror"
     ],
-    "popularity": 82,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 991,
+    "createdAt": "2026-04-26T11:59:51.000Z",
+    "updatedAt": "2026-04-26T11:59:51.000Z"
   },
   {
     "id": "C4-28",
@@ -5236,15 +5236,15 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "mirror",
       "sheesham"
     ],
-    "popularity": 83,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 990,
+    "createdAt": "2026-04-26T11:59:50.000Z",
+    "updatedAt": "2026-04-26T11:59:50.000Z"
   },
   {
     "id": "C4-29",
@@ -5299,9 +5299,9 @@ export const products = [
       "mirror",
       "teak"
     ],
-    "popularity": 84,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 989,
+    "createdAt": "2026-04-26T11:59:49.000Z",
+    "updatedAt": "2026-04-26T11:59:49.000Z"
   },
   {
     "id": "C4-30",
@@ -5410,7 +5410,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 91,
+    "popularity": 806,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -5466,7 +5466,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 92,
+    "popularity": 805,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -5522,7 +5522,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 93,
+    "popularity": 804,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -5578,7 +5578,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 94,
+    "popularity": 803,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -5634,7 +5634,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 80,
+    "popularity": 802,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -5690,7 +5690,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 81,
+    "popularity": 801,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -5741,12 +5741,12 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "curtain"
     ],
-    "popularity": 82,
+    "popularity": 800,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -5802,7 +5802,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 83,
+    "popularity": 799,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -5853,12 +5853,12 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "curtain"
     ],
-    "popularity": 84,
+    "popularity": 798,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -5914,7 +5914,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 90,
+    "popularity": 797,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -5965,12 +5965,12 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "curtain"
     ],
-    "popularity": 91,
+    "popularity": 796,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -6026,7 +6026,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 92,
+    "popularity": 795,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -6082,7 +6082,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 93,
+    "popularity": 794,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -6135,7 +6135,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 94,
+    "popularity": 793,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -6191,7 +6191,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 80,
+    "popularity": 792,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -6244,7 +6244,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 81,
+    "popularity": 791,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -6297,7 +6297,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 82,
+    "popularity": 790,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -6350,7 +6350,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 83,
+    "popularity": 789,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -6401,12 +6401,12 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "curtain"
     ],
-    "popularity": 84,
+    "popularity": 788,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -6462,7 +6462,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 90,
+    "popularity": 787,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -6513,12 +6513,12 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "curtain"
     ],
-    "popularity": 91,
+    "popularity": 786,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -6574,7 +6574,7 @@ export const products = [
     "tags": [
       "curtain"
     ],
-    "popularity": 92,
+    "popularity": 785,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -6625,12 +6625,12 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "curtain"
     ],
-    "popularity": 93,
+    "popularity": 784,
     "createdAt": "2026-04-26T08:00:00.000Z",
     "updatedAt": "2026-04-26T08:00:00.000Z"
   },
@@ -6987,15 +6987,15 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "tea table",
       "sheesham"
     ],
-    "popularity": 81,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 988,
+    "createdAt": "2026-04-26T11:59:48.000Z",
+    "updatedAt": "2026-04-26T11:59:48.000Z"
   },
   {
     "id": "C5-07",
@@ -7099,9 +7099,9 @@ export const products = [
     "tags": [
       "cafe chair"
     ],
-    "popularity": 83,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 987,
+    "createdAt": "2026-04-26T11:59:47.000Z",
+    "updatedAt": "2026-04-26T11:59:47.000Z"
   },
   {
     "id": "C5-09",
@@ -7147,14 +7147,14 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "cafe chair"
     ],
-    "popularity": 84,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 986,
+    "createdAt": "2026-04-26T11:59:46.000Z",
+    "updatedAt": "2026-04-26T11:59:46.000Z"
   },
   {
     "id": "C5-10",
@@ -7200,14 +7200,14 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "cafe chair"
     ],
-    "popularity": 90,
-    "createdAt": "2026-04-26T08:00:00.000Z",
-    "updatedAt": "2026-04-26T08:00:00.000Z"
+    "popularity": 985,
+    "createdAt": "2026-04-26T11:59:45.000Z",
+    "updatedAt": "2026-04-26T11:59:45.000Z"
   },
   {
     "id": "C5-11",
@@ -7307,7 +7307,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "bed"
@@ -7758,7 +7758,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "side table",
@@ -7866,7 +7866,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": false,
+    "featured": true,
     "published": true,
     "tags": [
       "side table",
@@ -7976,7 +7976,7 @@ export const products = [
     "inStock": true,
     "madeToOrder": false,
     "stockStatus": "in_stock",
-    "featured": true,
+    "featured": false,
     "published": true,
     "tags": [
       "bar unit",

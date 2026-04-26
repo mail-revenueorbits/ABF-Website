@@ -169,7 +169,14 @@ export async function queryProducts({
       break;
     case 'popular':
     default:
-      filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+      // Primary signal: numeric popularity (admin-tunable, used to elevate
+      // owner-selected picks and cleaner-photographed variants). Secondary:
+      // the featured flag.
+      filtered.sort((a, b) => {
+        const diff = (b.popularity || 0) - (a.popularity || 0);
+        if (diff !== 0) return diff;
+        return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
+      });
       break;
   }
 

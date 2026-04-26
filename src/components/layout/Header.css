@@ -409,7 +409,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px var(--margin-edge, 24px);
+    padding: 8px var(--margin-edge, 20px);
+  }
+
+  .header-mobile .logo {
+    font-size: 20px;
   }
 
   .header-mobile button {
@@ -422,7 +426,7 @@
 
   .header-mobile .material-symbols-outlined {
     color: var(--color-wood-600, #704A2E);
-    font-size: 24px;
+    font-size: 22px;
   }
 }
 

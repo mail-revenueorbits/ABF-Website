@@ -45,7 +45,9 @@
       "Bash(python scripts/build_product_images.py)",
       "Bash(python -c ' *)",
       "Bash(awk '{print $5, $NF}')",
-      "Read(//c/Users/Acer/Documents/React Apps/ABF-Website/**)"
+      "Read(//c/Users/Acer/Documents/React Apps/ABF-Website/**)",
+      "Bash(git -C \"c:/Users/Acer/Documents/React Apps/ABF-Website\" status)",
+      "Bash(git -C \"c:/Users/Acer/Documents/React Apps/ABF-Website\" show HEAD:index.html)"
     ]
   }
 }

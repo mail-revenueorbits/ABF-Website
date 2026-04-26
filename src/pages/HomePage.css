@@ -272,7 +272,7 @@
   overflow: hidden;
   aspect-ratio: 4 / 5;
   cursor: pointer;
-  background: var(--color-dark-900, #141414);
+  background: var(--color-ivory-200, #F5F0E8);
   transition: transform var(--duration-slow, 700ms) var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1)),
               box-shadow var(--duration-slow, 700ms) var(--ease-smooth, cubic-bezier(0.16, 1, 0.3, 1));
 }
@@ -419,17 +419,11 @@
   display: block;
   border-radius: 10px;
   overflow: hidden;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 5;
   cursor: pointer;
-  background: var(--color-dark-900, #141414);
+  background: var(--color-ivory-200, #F5F0E8);
   transition: transform var(--duration-slow, 700ms) var(--ease-smooth),
               box-shadow var(--duration-slow, 700ms) var(--ease-smooth);
-}
-
-@media (min-width: 768px) {
-  .room-card {
-    aspect-ratio: 4 / 5;
-  }
 }
 
 .room-card:hover {
