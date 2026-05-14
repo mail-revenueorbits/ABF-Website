@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { queryProducts, getCategories } from '../services/productService';
+import useProductStore from '../store/productStore';
+import useCategoryStore from '../store/categoryStore';
 import ProductCard from '../components/shop/ProductCard';
 import './ShopPage.css';
 
@@ -22,6 +24,10 @@ function ShopPage() {
   const [searchInput, setSearchInput] = useState(searchParams.get('search') || '');
   const searchTimeout = useRef(null);
   const gridRef = useRef(null);
+
+  // Subscribe to store initialization to re-trigger queries when data arrives
+  const productsInitialized = useProductStore((state) => state.initialized);
+  const categoriesInitialized = useCategoryStore((state) => state.initialized);
 
   // Read params
   const activeCategory = searchParams.get('category') || 'all';
@@ -51,32 +57,38 @@ function ShopPage() {
 
   // Load categories
   useEffect(() => {
-    getCategories().then(setCategories);
-  }, []);
+    if (categoriesInitialized && productsInitialized) {
+      getCategories().then(setCategories);
+    }
+  }, [categoriesInitialized, productsInitialized]);
 
-  // Load products whenever params change
+  // Load products whenever params change or products initialize
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
 
-    queryProducts({
-      category: activeCategory,
-      search: activeSearch,
-      sort: activeSort,
-      page: activePage,
-      perPage: 12,
-    }).then((result) => {
-      if (cancelled) return;
-      setProducts(result.products);
-      setTotal(result.total);
-      setTotalPages(result.totalPages);
-      setLoading(false);
-    });
+    if (productsInitialized) {
+      queryProducts({
+        category: activeCategory,
+        search: activeSearch,
+        sort: activeSort,
+        page: activePage,
+        perPage: 12,
+      }).then((result) => {
+        if (cancelled) return;
+        setProducts(result.products);
+        setTotal(result.total);
+        setTotalPages(result.totalPages);
+        setLoading(false);
+      });
+    } else {
+      // If not initialized, just wait (loading state remains true)
+    }
 
     return () => {
       cancelled = true;
     };
-  }, [activeCategory, activeSearch, activeSort, activePage]);
+  }, [activeCategory, activeSearch, activeSort, activePage, productsInitialized]);
 
   // Debounced search
   const handleSearchChange = (e) => {

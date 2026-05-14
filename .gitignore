@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Migration artifacts
+scripts/cloudinary_mapping.json

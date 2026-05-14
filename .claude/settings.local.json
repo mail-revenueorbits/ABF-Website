@@ -47,7 +47,11 @@
       "Bash(awk '{print $5, $NF}')",
       "Read(//c/Users/Acer/Documents/React Apps/ABF-Website/**)",
       "Bash(git -C \"c:/Users/Acer/Documents/React Apps/ABF-Website\" status)",
-      "Bash(git -C \"c:/Users/Acer/Documents/React Apps/ABF-Website\" show HEAD:index.html)"
+      "Bash(git -C \"c:/Users/Acer/Documents/React Apps/ABF-Website\" show HEAD:index.html)",
+      "Bash(node .claude/skills/impeccable/scripts/load-context.mjs)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }

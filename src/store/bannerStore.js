@@ -1,110 +1,109 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { generateId } from '../utils/generateId';
+import { supabase } from '../lib/supabase';
+import { rowsToCamel, rowToCamel, objToSnake } from '../lib/dbHelpers';
 
-/**
- * Banner schema:
- * {
- *   id: string,
- *   title: string,
- *   subtitle: string,
- *   imageUrl: string,
- *   linkUrl: string,
- *   linkText: string,
- *   position: 'hero' | 'promo_bar' | 'category_banner',
- *   active: boolean,
- *   order: number,
- *   startDate: string | null (ISO),
- *   endDate: string | null (ISO),
- *   createdAt: string,
- * }
- */
+const useBannerStore = create((set, get) => ({
+  banners: [],
+  loading: false,
+  error: null,
+  initialized: false,
 
-const SEED_BANNERS = [
-  {
-    id: 'ban_001',
-    title: 'Monsoon Sale',
-    subtitle: 'Up to 30% off on Sofas & Dining Sets',
-    imageUrl: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=80&auto=format',
-    linkUrl: '/shop?category=sofas',
-    linkText: 'Shop Now',
-    position: 'hero',
-    active: true,
-    order: 1,
-    startDate: null,
-    endDate: null,
-    createdAt: '2026-04-20T10:00:00Z',
-  },
-  {
-    id: 'ban_002',
-    title: 'Free Delivery Inside Kathmandu Valley',
-    subtitle: '',
-    imageUrl: '',
-    linkUrl: '',
-    linkText: '',
-    position: 'promo_bar',
-    active: true,
-    order: 1,
-    startDate: null,
-    endDate: null,
-    createdAt: '2026-04-20T10:00:00Z',
-  },
-];
-
-const useBannerStore = create(
-  persist(
-    (set, get) => ({
-      banners: SEED_BANNERS,
-
-      addBanner: (data) => {
-        const banner = {
-          id: generateId('ban'),
-          createdAt: new Date().toISOString(),
-          active: true,
-          order: get().banners.length + 1,
-          ...data,
-        };
-        set((state) => ({ banners: [...state.banners, banner] }));
-        return banner;
-      },
-
-      updateBanner: (id, data) => {
-        set((state) => ({
-          banners: state.banners.map((b) =>
-            b.id === id ? { ...b, ...data } : b
-          ),
-        }));
-      },
-
-      deleteBanner: (id) => {
-        set((state) => ({
-          banners: state.banners.filter((b) => b.id !== id),
-        }));
-      },
-
-      toggleBanner: (id) => {
-        set((state) => ({
-          banners: state.banners.map((b) =>
-            b.id === id ? { ...b, active: !b.active } : b
-          ),
-        }));
-      },
-
-      getActiveBanners: (position) => {
-        const now = new Date();
-        return get().banners.filter((b) => {
-          if (!b.active) return false;
-          if (position && b.position !== position) return false;
-          if (b.startDate && new Date(b.startDate) > now) return false;
-          if (b.endDate && new Date(b.endDate) < now) return false;
-          return true;
-        }).sort((a, b) => a.order - b.order);
-      },
-    }),
-    {
-      name: 'abf-banners',
+  fetchBanners: async () => {
+    if (get().initialized) return;
+    set({ loading: true, error: null });
+    const { data, error } = await supabase
+      .from('banners')
+      .select('*')
+      .order('sort_order', { ascending: true });
+    if (error) {
+      set({ error: error.message, loading: false });
+      console.error('Failed to fetch banners:', error.message);
+      return;
     }
-  )
-);
+    set({ banners: rowsToCamel(data), loading: false, initialized: true });
+  },
+
+  addBanner: async (bannerData) => {
+    const snakeData = objToSnake({
+      id: `ban_${Date.now()}`,
+      createdAt: new Date().toISOString(),
+      active: true,
+      sortOrder: get().banners.length + 1,
+      ...bannerData,
+    });
+    const { data, error } = await supabase
+      .from('banners')
+      .insert(snakeData)
+      .select()
+      .single();
+    if (error) {
+      console.error('Failed to add banner:', error.message);
+      return null;
+    }
+    const banner = rowToCamel(data);
+    set((state) => ({ banners: [...state.banners, banner] }));
+    return banner;
+  },
+
+  updateBanner: async (id, updates) => {
+    const snakeData = objToSnake(updates);
+    const { error } = await supabase
+      .from('banners')
+      .update(snakeData)
+      .eq('id', id);
+    if (error) {
+      console.error('Failed to update banner:', error.message);
+      return;
+    }
+    set((state) => ({
+      banners: state.banners.map((b) =>
+        b.id === id ? { ...b, ...updates } : b
+      ),
+    }));
+  },
+
+  deleteBanner: async (id) => {
+    const { error } = await supabase
+      .from('banners')
+      .delete()
+      .eq('id', id);
+    if (error) {
+      console.error('Failed to delete banner:', error.message);
+      return;
+    }
+    set((state) => ({
+      banners: state.banners.filter((b) => b.id !== id),
+    }));
+  },
+
+  toggleBanner: async (id) => {
+    const banner = get().banners.find((b) => b.id === id);
+    if (!banner) return;
+    const { error } = await supabase
+      .from('banners')
+      .update({ active: !banner.active })
+      .eq('id', id);
+    if (error) {
+      console.error('Failed to toggle banner:', error.message);
+      return;
+    }
+    set((state) => ({
+      banners: state.banners.map((b) =>
+        b.id === id ? { ...b, active: !b.active } : b
+      ),
+    }));
+  },
+
+  getActiveBanners: (position) => {
+    const now = new Date();
+    return get().banners.filter((b) => {
+      if (!b.active) return false;
+      if (position && b.position !== position) return false;
+      if (b.startDate && new Date(b.startDate) > now) return false;
+      if (b.endDate && new Date(b.endDate) < now) return false;
+      return true;
+    }).sort((a, b) => (a.sortOrder || a.order || 0) - (b.sortOrder || b.order || 0));
+  },
+}));
 
 export default useBannerStore;

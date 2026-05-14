@@ -6,7 +6,7 @@ import {
   getRelatedProducts,
   getProductsByIds,
 } from '../services/productService';
-import { formatNPR } from '../data/products';
+import { formatNPR } from '../utils/formatCurrency';
 import { useWishlist } from '../context/WishlistContext';
 import { useRecentlyViewed } from '../hooks/useRecentlyViewed';
 import { getWhatsAppLink } from '../services/whatsapp';

@@ -635,6 +635,16 @@
   margin-bottom: 8px;
 }
 
+.admin-image-upload.processing .material-symbols-outlined {
+  animation: adminSpin 2s linear infinite;
+  color: var(--walnut);
+}
+
+@keyframes adminSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .admin-image-upload p {
   font-size: 13px;
   color: var(--text-muted);

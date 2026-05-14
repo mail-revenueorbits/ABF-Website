@@ -1,136 +1,200 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { generateId } from '../utils/generateId';
-import { products as CATALOG_PRODUCTS } from '../data/products';
+import { supabase } from '../lib/supabase';
+import { rowsToCamel, rowToCamel, objToSnake } from '../lib/dbHelpers';
 
-/**
- * Product schema:
- * {
- *   id: string,
- *   name: string,
- *   slug: string,
- *   description: string (HTML from WYSIWYG),
- *   categoryId: string,
- *   price: number (in NPR),
- *   salePrice: number | null,
- *   onSale: boolean,
- *   images: string[] (data-URLs or CDN urls),
- *   material: string,
- *   dimensions: { height: string, width: string, depth: string },
- *   weight: string,
- *   colorOptions: string,
- *   seatingCapacity: string,
- *   warranty: string,
- *   careInstructions: string,
- *   assemblyRequired: boolean,
- *   deliveryInfo: string,
- *   stockStatus: 'in_stock' | 'made_to_order' | 'out_of_stock',
- *   sku: string,
- *   tags: string[],
- *   featured: boolean,
- *   published: boolean,
- *   createdAt: string (ISO),
- *   updatedAt: string (ISO),
- * }
- */
+const useProductStore = create((set, get) => ({
+  products: [],
+  loading: false,
+  error: null,
+  initialized: false,
 
-// Seed the admin store with plain-text descriptions. The admin's rich-text
-// editor will convert to HTML on edit, which we strip back to plain text for
-// display on the PDP. Keeping one canonical field avoids divergence between
-// seeded and admin-edited products.
-const SEED_PRODUCTS = CATALOG_PRODUCTS.map((p) => ({
-  ...p,
-  description: p.description || '',
-}));
-
-const useProductStore = create(
-  persist(
-    (set, get) => ({
-      products: SEED_PRODUCTS,
-
-      addProduct: (data) => {
-        const now = new Date().toISOString();
-        const product = {
-          id: generateId('prod'),
-          createdAt: now,
-          updatedAt: now,
-          published: false,
-          featured: false,
-          onSale: false,
-          salePrice: null,
-          tags: [],
-          images: [],
-          ...data,
-        };
-        set((state) => ({ products: [product, ...state.products] }));
-        return product;
-      },
-
-      updateProduct: (id, data) => {
-        set((state) => ({
-          products: state.products.map((p) =>
-            p.id === id
-              ? { ...p, ...data, updatedAt: new Date().toISOString() }
-              : p
-          ),
-        }));
-      },
-
-      deleteProduct: (id) => {
-        set((state) => ({
-          products: state.products.filter((p) => p.id !== id),
-        }));
-      },
-
-      deleteProducts: (ids) => {
-        set((state) => ({
-          products: state.products.filter((p) => !ids.includes(p.id)),
-        }));
-      },
-
-      toggleSale: (id, salePrice) => {
-        set((state) => ({
-          products: state.products.map((p) =>
-            p.id === id
-              ? { ...p, onSale: !p.onSale, salePrice: p.onSale ? null : salePrice, updatedAt: new Date().toISOString() }
-              : p
-          ),
-        }));
-      },
-
-      bulkUpdateCategory: (ids, categoryId) => {
-        set((state) => ({
-          products: state.products.map((p) =>
-            ids.includes(p.id)
-              ? { ...p, categoryId, updatedAt: new Date().toISOString() }
-              : p
-          ),
-        }));
-      },
-
-      getProductById: (id) => {
-        return get().products.find((p) => p.id === id);
-      },
-
-      getProductsByCategory: (categoryId) => {
-        if (!categoryId) return get().products;
-        return get().products.filter((p) => p.categoryId === categoryId);
-      },
-
-      getFeaturedProducts: () => {
-        return get().products.filter((p) => p.featured && p.published);
-      },
-
-      getPublishedProducts: () => {
-        return get().products.filter((p) => p.published);
-      },
-    }),
-    {
-      // Bump the key when the catalogue schema changes so existing clients
-      // refresh their localStorage with the new seed data.
-      name: 'abf-products-v3',
+  /**
+   * Fetch all products from Supabase.
+   * Admin sees all; public pages use getPublishedProducts().
+   */
+  fetchProducts: async () => {
+    if (get().initialized) return;
+    set({ loading: true, error: null });
+    const { data, error } = await supabase
+      .from('products')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (error) {
+      set({ error: error.message, loading: false });
+      console.error('Failed to fetch products:', error.message);
+      return;
     }
-  )
-);
+    set({ products: rowsToCamel(data), loading: false, initialized: true });
+  },
+
+  /**
+   * Fetch ALL products (including unpublished) for admin panel.
+   * Requires authenticated session.
+   */
+  fetchAllProducts: async () => {
+    set({ loading: true, error: null });
+    const { data, error } = await supabase
+      .from('products')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (error) {
+      set({ error: error.message, loading: false });
+      console.error('Failed to fetch all products:', error.message);
+      return;
+    }
+    set({ products: rowsToCamel(data), loading: false, initialized: true });
+  },
+
+  addProduct: async (productData) => {
+    const now = new Date().toISOString();
+    const id = productData.id || `prod_${Date.now()}`;
+    const snakeData = objToSnake({
+      id,
+      createdAt: now,
+      updatedAt: now,
+      published: false,
+      featured: false,
+      onSale: false,
+      salePrice: null,
+      tags: [],
+      images: [],
+      features: [],
+      variants: [],
+      dimensions: {},
+      popularity: 0,
+      ...productData,
+    });
+    // Ensure JSONB fields are stringified
+    if (typeof snakeData.images !== 'string') snakeData.images = JSON.stringify(snakeData.images || []);
+    if (typeof snakeData.tags !== 'string') snakeData.tags = JSON.stringify(snakeData.tags || []);
+    if (typeof snakeData.features !== 'string') snakeData.features = JSON.stringify(snakeData.features || []);
+    if (typeof snakeData.variants !== 'string') snakeData.variants = JSON.stringify(snakeData.variants || []);
+    if (typeof snakeData.dimensions !== 'string') snakeData.dimensions = JSON.stringify(snakeData.dimensions || {});
+
+    const { data, error } = await supabase
+      .from('products')
+      .insert(snakeData)
+      .select()
+      .single();
+    if (error) {
+      console.error('Failed to add product:', error.message);
+      return null;
+    }
+    const product = rowToCamel(data);
+    set((state) => ({ products: [product, ...state.products] }));
+    return product;
+  },
+
+  updateProduct: async (id, updates) => {
+    const snakeData = objToSnake({ ...updates, updatedAt: new Date().toISOString() });
+    // Ensure JSONB fields are stringified
+    if (snakeData.images && typeof snakeData.images !== 'string') snakeData.images = JSON.stringify(snakeData.images);
+    if (snakeData.tags && typeof snakeData.tags !== 'string') snakeData.tags = JSON.stringify(snakeData.tags);
+    if (snakeData.features && typeof snakeData.features !== 'string') snakeData.features = JSON.stringify(snakeData.features);
+    if (snakeData.variants && typeof snakeData.variants !== 'string') snakeData.variants = JSON.stringify(snakeData.variants);
+    if (snakeData.dimensions && typeof snakeData.dimensions !== 'string') snakeData.dimensions = JSON.stringify(snakeData.dimensions);
+
+    const { error } = await supabase
+      .from('products')
+      .update(snakeData)
+      .eq('id', id);
+    if (error) {
+      console.error('Failed to update product:', error.message);
+      return;
+    }
+    set((state) => ({
+      products: state.products.map((p) =>
+        p.id === id ? { ...p, ...updates, updatedAt: new Date().toISOString() } : p
+      ),
+    }));
+  },
+
+  deleteProduct: async (id) => {
+    const { error } = await supabase
+      .from('products')
+      .delete()
+      .eq('id', id);
+    if (error) {
+      console.error('Failed to delete product:', error.message);
+      return;
+    }
+    set((state) => ({
+      products: state.products.filter((p) => p.id !== id),
+    }));
+  },
+
+  deleteProducts: async (ids) => {
+    const { error } = await supabase
+      .from('products')
+      .delete()
+      .in('id', ids);
+    if (error) {
+      console.error('Failed to delete products:', error.message);
+      return;
+    }
+    set((state) => ({
+      products: state.products.filter((p) => !ids.includes(p.id)),
+    }));
+  },
+
+  toggleSale: async (id, salePrice) => {
+    const product = get().products.find((p) => p.id === id);
+    if (!product) return;
+    const updates = {
+      onSale: !product.onSale,
+      salePrice: product.onSale ? null : salePrice,
+      updatedAt: new Date().toISOString(),
+    };
+    const snakeData = objToSnake(updates);
+    const { error } = await supabase
+      .from('products')
+      .update(snakeData)
+      .eq('id', id);
+    if (error) {
+      console.error('Failed to toggle sale:', error.message);
+      return;
+    }
+    set((state) => ({
+      products: state.products.map((p) =>
+        p.id === id ? { ...p, ...updates } : p
+      ),
+    }));
+  },
+
+  bulkUpdateCategory: async (ids, categoryId) => {
+    const { error } = await supabase
+      .from('products')
+      .update({ category_id: categoryId, updated_at: new Date().toISOString() })
+      .in('id', ids);
+    if (error) {
+      console.error('Failed to bulk update category:', error.message);
+      return;
+    }
+    set((state) => ({
+      products: state.products.map((p) =>
+        ids.includes(p.id)
+          ? { ...p, categoryId, updatedAt: new Date().toISOString() }
+          : p
+      ),
+    }));
+  },
+
+  getProductById: (id) => {
+    return get().products.find((p) => p.id === id);
+  },
+
+  getProductsByCategory: (categoryId) => {
+    if (!categoryId) return get().products;
+    return get().products.filter((p) => p.categoryId === categoryId);
+  },
+
+  getFeaturedProducts: () => {
+    return get().products.filter((p) => p.featured && p.published);
+  },
+
+  getPublishedProducts: () => {
+    return get().products.filter((p) => p.published);
+  },
+}));
 
 export default useProductStore;

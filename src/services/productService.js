@@ -1,18 +1,11 @@
 /**
  * Product Data Service
  * Provides data access methods for the product catalog.
- * Now reads from the admin productStore (Zustand + localStorage).
+ * Reads from the Supabase-backed productStore (Zustand).
  */
 
 import useProductStore from '../store/productStore';
 import useCategoryStore from '../store/categoryStore';
-
-// Simulate a small network delay for realistic loading states
-const SIMULATED_DELAY = 200;
-
-function delay(ms = SIMULATED_DELAY) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
 // Helper to get current products from store
 function getProducts() {
@@ -29,7 +22,6 @@ function getCategoriesData() {
  * to categories that actually contain published products.
  */
 export async function getCategories() {
-  await delay();
   const categories = getCategoriesData();
   const products = getProducts();
   return categories
@@ -47,7 +39,6 @@ export async function getCategories() {
  * @param {number} [limit=8] - number of products to return
  */
 export async function getFeaturedProducts(limit = 8) {
-  await delay();
   const products = getProducts();
   return [...products]
     .filter((p) => p.featured && p.published)
@@ -60,7 +51,6 @@ export async function getFeaturedProducts(limit = 8) {
  * @param {number} [limit=4]
  */
 export async function getBestsellerProducts(limit = 4) {
-  await delay();
   const products = getProducts();
   return [...products]
     .filter((p) => p.featured)
@@ -73,7 +63,6 @@ export async function getBestsellerProducts(limit = 4) {
  * @param {number} [limit=4]
  */
 export async function getNewArrivals(limit = 4) {
-  await delay();
   const products = getProducts();
   return [...products]
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
@@ -85,7 +74,6 @@ export async function getNewArrivals(limit = 4) {
  * @param {number} [limit=4]
  */
 export async function getDealProducts(limit = 4) {
-  await delay();
   const products = getProducts();
   return [...products]
     .filter((p) => p.onSale && p.salePrice)
@@ -98,7 +86,6 @@ export async function getDealProducts(limit = 4) {
  * @param {string} id
  */
 export async function getProductById(id) {
-  await delay();
   const products = getProducts();
   return products.find((p) => p.id === id) || null;
 }
@@ -108,7 +95,6 @@ export async function getProductById(id) {
  * @param {string} slug
  */
 export async function getProductBySlug(slug) {
-  await delay();
   const products = getProducts();
   return products.find((p) => p.slug === slug) || null;
 }
@@ -122,7 +108,6 @@ export async function getProductBySlug(slug) {
  * @param {'price-asc' | 'price-desc' | 'newest' | 'popular'} [params.sort]
  * @param {number} [params.page] - 1-indexed page number
  * @param {number} [params.perPage] - items per page, default 12
- * @returns {Promise<{ products: import('../data/products').Product[], total: number, page: number, totalPages: number }>}
  */
 export async function queryProducts({
   category,
@@ -131,8 +116,6 @@ export async function queryProducts({
   page = 1,
   perPage = 12,
 } = {}) {
-  await delay();
-
   const products = getProducts();
   let filtered = [...products];
 
@@ -169,9 +152,6 @@ export async function queryProducts({
       break;
     case 'popular':
     default:
-      // Primary signal: numeric popularity (admin-tunable, used to elevate
-      // owner-selected picks and cleaner-photographed variants). Secondary:
-      // the featured flag.
       filtered.sort((a, b) => {
         const diff = (b.popularity || 0) - (a.popularity || 0);
         if (diff !== 0) return diff;
@@ -200,7 +180,6 @@ export async function queryProducts({
  * @param {number} [limit=4]
  */
 export async function getRelatedProducts(productId, limit = 4) {
-  await delay();
   const products = getProducts();
   const product = products.find((p) => p.id === productId);
   if (!product) return [];
@@ -217,7 +196,6 @@ export async function getRelatedProducts(productId, limit = 4) {
  * @param {string[]} ids
  */
 export async function getProductsByIds(ids) {
-  await delay();
   const products = getProducts();
   return ids
     .map((id) => products.find((p) => p.id === id))

@@ -6,7 +6,9 @@ import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
 import ProductPage from './pages/ProductPage';
 import ScrollToTop from './components/layout/ScrollToTop';
-import { migrateAllProducts } from './utils/migrateProducts';
+import useProductStore from './store/productStore';
+import useCategoryStore from './store/categoryStore';
+import useBannerStore from './store/bannerStore';
 import './index.css';
 
 // Lazy-load the entire admin panel so it doesn't bloat the public bundle
@@ -36,20 +38,16 @@ function AdminFallback() {
 }
 
 function App() {
-  // Run migration once on app load
+  // Fetch public data from Supabase on app load
+  const fetchProducts = useProductStore((s) => s.fetchProducts);
+  const fetchCategories = useCategoryStore((s) => s.fetchCategories);
+  const fetchBanners = useBannerStore((s) => s.fetchBanners);
+
   useEffect(() => {
-    const migrationKey = 'abf-products-migrated';
-    if (!localStorage.getItem(migrationKey)) {
-      console.log('Running product migration...');
-      try {
-        const count = migrateAllProducts();
-        localStorage.setItem(migrationKey, 'true');
-        console.log(`Successfully migrated ${count} products`);
-      } catch (error) {
-        console.error('Migration failed:', error);
-      }
-    }
-  }, []);
+    fetchProducts();
+    fetchCategories();
+    fetchBanners();
+  }, [fetchProducts, fetchCategories, fetchBanners]);
 
   return (
     <WishlistProvider>

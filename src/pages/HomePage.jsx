@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Hero from '../components/home/Hero';
 import FeaturedCollection from '../components/home/FeaturedCollection';
 import { getBestsellerProducts, getNewArrivals } from '../services/productService';
+import useProductStore from '../store/productStore';
 import { formatNPR } from '../utils/formatCurrency';
 import './HomePage.css';
 
@@ -289,16 +290,19 @@ function ProductRailSection() {
   const [newProducts, setNewProducts] = useState([]);
   const [bestProducts, setBestProducts] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const productsInitialized = useProductStore((state) => state.initialized);
 
   useEffect(() => {
     async function load() {
-      const [n, b] = await Promise.all([getNewArrivals(4), getBestsellerProducts(4)]);
-      setNewProducts(n);
-      setBestProducts(b);
-      setLoaded(true);
+      if (productsInitialized) {
+        const [n, b] = await Promise.all([getNewArrivals(4), getBestsellerProducts(4)]);
+        setNewProducts(n);
+        setBestProducts(b);
+        setLoaded(true);
+      }
     }
     load();
-  }, []);
+  }, [productsInitialized]);
 
   if (!loaded) return null;
 

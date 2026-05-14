@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { getFeaturedProducts } from '../../services/productService';
+import useProductStore from '../../store/productStore';
 import { formatNPR } from '../../utils/formatCurrency';
 import './FeaturedCollection.css';
 
@@ -8,15 +9,18 @@ function FeaturedCollection() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const sectionRef = useRef(null);
+  const productsInitialized = useProductStore((state) => state.initialized);
 
   useEffect(() => {
     async function loadProducts() {
-      const data = await getFeaturedProducts(8);
-      setProducts(data);
-      setLoading(false);
+      if (productsInitialized) {
+        const data = await getFeaturedProducts(8);
+        setProducts(data);
+        setLoading(false);
+      }
     }
     loadProducts();
-  }, []);
+  }, [productsInitialized]);
 
   useEffect(() => {
     if (loading) return;

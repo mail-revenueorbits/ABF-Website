@@ -43,13 +43,25 @@ function ProductFormModal({ isOpen, onClose, product }) {
 
   useEffect(() => {
     if (product) {
+      // Supabase returns null for empty optional columns.
+      // Convert nulls to empty strings so React inputs remain controlled.
+      const sanitizedProduct = Object.entries(product).reduce((acc, [key, val]) => {
+        acc[key] = val === null ? '' : val;
+        return acc;
+      }, {});
+
       setForm({
         ...EMPTY_PRODUCT,
-        ...product,
+        ...sanitizedProduct,
         price: product.price?.toString() || '',
         salePrice: product.salePrice?.toString() || '',
+        dimensions: {
+          ...EMPTY_PRODUCT.dimensions,
+          ...(sanitizedProduct.dimensions || {}),
+        },
       });
-      setTagsInput(product.tags?.join(', ') || '');
+      const tags = Array.isArray(product.tags) ? product.tags : (typeof product.tags === 'string' ? (() => { try { return JSON.parse(product.tags); } catch { return []; } })() : []);
+      setTagsInput(tags.join(', ') || '');
     } else {
       setForm(EMPTY_PRODUCT);
       setTagsInput('');
