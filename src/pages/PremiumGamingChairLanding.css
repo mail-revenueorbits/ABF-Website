@@ -3,7 +3,7 @@
   color: var(--color-ivory-100);
   min-height: 100vh;
   font-family: var(--font-body);
-  padding-bottom: 80px; /* Space for sticky CTA if needed */
+  padding-bottom: 100px; /* Space for sticky CTA */
   max-width: 480px;
   margin: 0 auto;
   box-shadow: 0 0 40px rgba(0,0,0,0.5); /* Adds a subtle shadow on desktop to separate from the background */
@@ -366,5 +366,150 @@ body {
 
 .feature-item .material-symbols-outlined {
   color: var(--color-primary-500);
-  font-size: 18px;
+  font-size: 22px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Warranty Section */
+.warranty-section {
+  background-color: rgba(37, 211, 102, 0.05);
+  border: 1px solid rgba(37, 211, 102, 0.2);
+  border-left: 4px solid var(--color-success-500);
+  padding: 16px 20px;
+  margin: 0 20px 32px 20px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  border-radius: 6px;
+}
+
+.warranty-icon .material-symbols-outlined {
+  color: var(--color-success-500);
+  font-size: 28px;
+}
+
+.warranty-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-ivory-100);
+  margin-bottom: 4px;
+}
+
+.warranty-text {
+  font-size: 13px;
+  color: var(--color-dark-200);
+  line-height: 1.4;
+}
+
+/* Social Proof */
+.social-proof-section {
+  padding: 0 20px 32px 20px;
+}
+
+.social-proof-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.review-card {
+  background-color: var(--color-dark-800);
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.review-stars {
+  color: #FFB800;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.review-text {
+  font-size: 14px;
+  color: var(--color-ivory-200);
+  line-height: 1.5;
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.review-author {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-primary-400);
+}
+
+.raw-photo-container {
+  margin-top: 24px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  background-color: #000;
+}
+
+.raw-photo-caption {
+  font-size: 11px;
+  text-align: center;
+  padding: 8px;
+  background-color: var(--color-dark-800);
+  color: var(--color-dark-300);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.raw-photo-img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.1) brightness(0.9); /* Adds a slightly raw/unedited feel */
+}
+
+/* Sticky CTA */
+.sticky-cta-container {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  padding: 16px 20px;
+  background: linear-gradient(to top, rgba(15,15,15,1) 60%, rgba(15,15,15,0));
+  z-index: 100;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none; /* Let clicks pass through the gradient if button is not clicked */
+}
+
+.sticky-cta-container.visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.sticky-cta-container.hidden {
+  opacity: 0;
+  transform: translate(-50%, 20px);
+}
+
+.sticky-cta-btn {
+  width: 100%;
+  background-color: var(--color-primary-500);
+  color: white;
+  border: none;
+  padding: 18px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(232, 80, 26, 0.4);
+  pointer-events: auto; /* Re-enable clicks for the button */
 }
