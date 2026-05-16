@@ -96,6 +96,20 @@ export default function PremiumGamingChairLanding() {
     e.preventDefault();
     setIsSubmitting(true);
     
+    // Generate a unique Event ID for Meta Pixel & CAPI deduplication
+    const eventId = "evt_" + Date.now() + Math.floor(Math.random() * 1000);
+
+    // 1. Fire Client-Side Meta Pixel
+    if (window.fbq) {
+      window.fbq('track', 'Purchase', {
+        currency: 'NPR',
+        value: 28799,
+        content_name: `Premium Gaming Chair (${selectedColor.name})`,
+        content_type: 'product'
+      }, { eventID: eventId });
+    }
+
+    // 2. Save to Supabase DB
     await addInquiry({
       name: formData.name,
       phone: formData.phone,
@@ -105,6 +119,29 @@ export default function PremiumGamingChairLanding() {
       preferredContact: "phone",
       budgetRange: "Rs. 28,799",
       notes: formData.notes
+    });
+
+    // 3. Fire Server-Side Conversions API (CAPI)
+    import('../lib/supabase').then(({ supabase }) => {
+      supabase.functions.invoke('meta-capi', {
+        body: {
+          eventName: 'Purchase',
+          eventId: eventId,
+          eventSourceUrl: window.location.href,
+          userData: {
+            fn: formData.name.split(' ')[0],
+            ln: formData.name.split(' ').slice(1).join(' ') || '',
+            ph: formData.phone,
+            fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || null,
+            fbc: document.cookie.match(/_fbc=([^;]+)/)?.[1] || null,
+          },
+          customData: {
+            currency: 'NPR',
+            value: 28799,
+            content_name: `Premium Gaming Chair (${selectedColor.name})`
+          }
+        }
+      }).catch(console.error); // Fire-and-forget
     });
     
     setIsSubmitting(false);
