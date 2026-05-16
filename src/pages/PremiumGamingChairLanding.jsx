@@ -27,7 +27,8 @@ export default function PremiumGamingChairLanding() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    location: ''
+    location: '',
+    notes: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -66,7 +67,8 @@ export default function PremiumGamingChairLanding() {
       productOfInterest: `Premium Gaming Chair (${selectedColor.name})`,
       message: "Lead from Promo Landing Page (COD Requested)",
       preferredContact: "phone",
-      budgetRange: "Rs. 28,799"
+      budgetRange: "Rs. 28,799",
+      notes: formData.notes
     });
     
     setIsSubmitting(false);
@@ -84,8 +86,9 @@ export default function PremiumGamingChairLanding() {
       `*Color:* ${selectedColor.name}\n` +
       `*Name:* ${formData.name}\n` +
       `*Phone:* ${formData.phone}\n` +
-      `*Location:* ${formData.location}\n\n` +
-      `I'd like to confirm this order.`;
+      `*Location:* ${formData.location}\n` +
+      (formData.notes ? `*Notes:* ${formData.notes}\n` : '') +
+      `\nI'd like to confirm this order.`;
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
   };
 
@@ -219,6 +222,19 @@ export default function PremiumGamingChairLanding() {
                 placeholder="e.g. Baneshwor, Kathmandu"
                 value={formData.location}
                 onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="landing-form-group">
+              <label className="landing-form-label">Additional Notes (Optional)</label>
+              <textarea 
+                name="notes"
+                className="landing-form-input" 
+                placeholder="Any special instructions for delivery..."
+                value={formData.notes}
+                onChange={handleInputChange}
+                rows="2"
+                style={{ resize: 'vertical', fontFamily: 'inherit' }}
               />
             </div>
 
