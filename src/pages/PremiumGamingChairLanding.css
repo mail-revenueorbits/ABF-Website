@@ -4,6 +4,14 @@
   min-height: 100vh;
   font-family: var(--font-body);
   padding-bottom: 80px; /* Space for sticky CTA if needed */
+  max-width: 480px;
+  margin: 0 auto;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5); /* Adds a subtle shadow on desktop to separate from the background */
+}
+
+/* Ensure the body has a dark background so the edges on desktop aren't white */
+body {
+  background-color: #050505;
 }
 
 /* 4:5 Aspect Ratio Gallery */
