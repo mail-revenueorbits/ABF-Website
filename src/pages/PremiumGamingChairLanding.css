@@ -132,6 +132,16 @@ body {
   font-weight: 700;
   color: var(--color-primary-400);
   margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.original-price {
+  font-size: 16px;
+  color: var(--color-dark-400);
+  text-decoration: line-through;
+  font-weight: 500;
 }
 
 /* Color Selector */

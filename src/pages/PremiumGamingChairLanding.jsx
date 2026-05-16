@@ -130,7 +130,10 @@ export default function PremiumGamingChairLanding() {
       <div className="product-info-container">
         <span className="brand-overline">AB Furniture & Furnishing</span>
         <h1 className="product-title">Premium Ergonomic Gaming Chair</h1>
-        <div className="product-price">Rs. 28,799</div>
+        <div className="product-price">
+          Rs. 28,799
+          <span className="original-price">Rs. 30,000</span>
+        </div>
 
         {/* Color Selector */}
         <div className="color-selector-section">
