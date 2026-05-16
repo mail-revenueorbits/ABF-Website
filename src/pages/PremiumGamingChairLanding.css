@@ -388,29 +388,50 @@ body {
   line-height: 1.4;
 }
 
-/* Warranty Section */
-.warranty-section {
-  background-color: rgba(37, 211, 102, 0.05);
-  border: 1px solid rgba(37, 211, 102, 0.2);
-  border-left: 4px solid var(--color-success-500);
-  padding: 16px 20px;
-  margin: 0 20px 32px 20px;
+/* Warranty Strip */
+.warranty-strip {
   display: flex;
-  gap: 16px;
   align-items: center;
-  border-radius: 6px;
+  justify-content: space-around;
+  padding: 16px 20px;
+  margin-bottom: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
-.warranty-icon .material-symbols-outlined {
-  color: var(--color-success-500);
-  font-size: 28px;
+.warranty-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  flex: 1;
 }
 
-.warranty-title {
-  font-size: 15px;
+.warranty-badge .material-symbols-outlined {
+  font-size: 22px;
+  color: var(--color-primary-400);
+}
+
+.warranty-badge-label {
+  font-size: 12px;
   font-weight: 700;
   color: var(--color-ivory-100);
-  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.warranty-badge-sub {
+  font-size: 10px;
+  color: var(--color-dark-400);
+  line-height: 1.2;
+}
+
+.warranty-divider {
+  width: 1px;
+  height: 36px;
+  background-color: rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
 }
 
 .warranty-text {

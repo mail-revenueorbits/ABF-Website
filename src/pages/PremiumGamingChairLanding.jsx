@@ -235,13 +235,23 @@ export default function PremiumGamingChairLanding() {
       </div>
 
       {/* Risk Reversal / Warranty */}
-      <div className="warranty-section">
-        <div className="warranty-icon">
+      <div className="warranty-strip">
+        <div className="warranty-badge">
           <span className="material-symbols-outlined">shield</span>
+          <span className="warranty-badge-label">2 Yr Warranty</span>
+          <span className="warranty-badge-sub">Wheels & Hydraulics</span>
         </div>
-        <div className="warranty-content">
-          <h3 className="warranty-title">Guaranteed Durability</h3>
-          <p className="warranty-text">Includes a strict <strong>2 Years Warranty</strong> on the wheel base and hydraulic mechanism.</p>
+        <div className="warranty-divider" />
+        <div className="warranty-badge">
+          <span className="material-symbols-outlined">local_shipping</span>
+          <span className="warranty-badge-label">Free Delivery</span>
+          <span className="warranty-badge-sub">Inside Valley</span>
+        </div>
+        <div className="warranty-divider" />
+        <div className="warranty-badge">
+          <span className="material-symbols-outlined">headset_mic</span>
+          <span className="warranty-badge-label">Call Confirm</span>
+          <span className="warranty-badge-sub">Before Dispatch</span>
         </div>
       </div>
 
