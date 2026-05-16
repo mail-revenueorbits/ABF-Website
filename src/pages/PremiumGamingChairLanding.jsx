@@ -115,6 +115,14 @@ export default function PremiumGamingChairLanding() {
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
   };
 
+  const scrollToForm = () => {
+    if (formRef.current) {
+      const yOffset = -20;
+      const y = formRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="gaming-landing-container">
       {/* 4:5 Swipeable Gallery */}
