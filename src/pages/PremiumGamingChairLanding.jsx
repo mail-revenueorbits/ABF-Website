@@ -191,27 +191,45 @@ export default function PremiumGamingChairLanding() {
         <div className="features-list">
           <div className="feature-item">
             <span className="material-symbols-outlined">airline_seat_flat</span>
-            <span><strong>Detachable Headrest Pillow:</strong> Provides essential neck and head support.</span>
+            <div className="feature-text">
+              <span className="feature-name">Detachable Headrest Pillow</span>
+              <span className="feature-desc">Provides essential neck and head support.</span>
+            </div>
           </div>
           <div className="feature-item">
             <span className="material-symbols-outlined">tune</span>
-            <span><strong>Adjustable Armrests:</strong> Can be moved to suit your comfortable seating position.</span>
+            <div className="feature-text">
+              <span className="feature-name">Adjustable Armrests</span>
+              <span className="feature-desc">Can be moved to suit your comfortable seating position.</span>
+            </div>
           </div>
           <div className="feature-item">
             <span className="material-symbols-outlined">airline_seat_legroom_extra</span>
-            <span><strong>Retractable Footrest:</strong> Pulls out to provide comfort for your legs and feet.</span>
+            <div className="feature-text">
+              <span className="feature-name">Retractable Footrest</span>
+              <span className="feature-desc">Pulls out to provide comfort for your legs and feet.</span>
+            </div>
           </div>
           <div className="feature-item">
             <span className="material-symbols-outlined">accessibility_new</span>
-            <span><strong>Ergonomic Lumbar Support:</strong> Adjustable cushion for perfect lower back alignment.</span>
+            <div className="feature-text">
+              <span className="feature-name">Ergonomic Lumbar Support</span>
+              <span className="feature-desc">Adjustable cushion for perfect lower back alignment.</span>
+            </div>
           </div>
           <div className="feature-item">
             <span className="material-symbols-outlined">diamond</span>
-            <span><strong>Premium PU Leather:</strong> Made with material that is both durable and breathable.</span>
+            <div className="feature-text">
+              <span className="feature-name">Premium PU Leather</span>
+              <span className="feature-desc">Durable and breathable. Built to last.</span>
+            </div>
           </div>
           <div className="feature-item">
             <span className="material-symbols-outlined">airline_seat_flat_angled</span>
-            <span><strong>180° Recline Mechanism:</strong> Allows the chair to recline fully flat, making it suitable for gaming, working, or relaxing.</span>
+            <div className="feature-text">
+              <span className="feature-name">180° Recline Mechanism</span>
+              <span className="feature-desc">Reclines fully flat. Game, work, or sleep in it.</span>
+            </div>
           </div>
         </div>
       </div>
