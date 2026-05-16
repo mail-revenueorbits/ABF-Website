@@ -124,6 +124,7 @@ body {
   font-size: 28px;
   line-height: 1.2;
   margin-bottom: 12px;
+  color: var(--color-ivory-100);
 }
 
 .product-price {
