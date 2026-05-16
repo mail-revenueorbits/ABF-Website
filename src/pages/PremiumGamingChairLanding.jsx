@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import useInquiryStore from '../store/inquiryStore';
 import './PremiumGamingChairLanding.css';
 
-const WHATSAPP_NUMBER = "9779801111111"; // Fallback, should be actual ABF number
+const WHATSAPP_NUMBER = "9779802322678"; // Actual ABF number
 
 // Using placeholder URLs for the gallery since exact assets weren't available in directory
 const IMAGES = [
