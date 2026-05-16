@@ -219,7 +219,10 @@ export default function PremiumGamingChairLanding() {
       {/* Product Info */}
       <div className="product-info-container">
         <span className="brand-overline">AB Furniture & Furnishing</span>
-        <h1 className="product-title">Premium Ergonomic Gaming Chair</h1>
+        <h1 className="product-title">
+          The Furgle Phantom Pro<br />
+          <span style={{ fontSize: '0.7em', fontWeight: '500', opacity: 0.85 }}>Premium 180° Ergonomic Recliner</span>
+        </h1>
         <div className="product-price">
           Rs. 28,799
           <span className="original-price">Rs. 30,000</span>
