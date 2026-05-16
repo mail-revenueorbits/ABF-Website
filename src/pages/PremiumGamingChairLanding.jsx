@@ -128,11 +128,7 @@ export default function PremiumGamingChairLanding() {
       {/* Top Warranty Ribbon */}
       <div className="top-ribbon">
         <span className="material-symbols-outlined">shield</span>
-        2 Years Warranty on Wheels &amp; Hydraulics
-        <span className="ribbon-dot">·</span>
-        Cash on Delivery
-        <span className="ribbon-dot">·</span>
-        Free Delivery Inside Valley
+        2 Years Warranty
       </div>
 
       {/* 4:5 Swipeable Gallery */}
@@ -272,23 +268,13 @@ export default function PremiumGamingChairLanding() {
         <div className="review-card">
           <div className="review-stars">★★★★★</div>
           <p className="review-text">"Easily the most comfortable chair I've owned. The 180-degree recline is a game changer for long WFH shifts. Customer service was also super responsive when I called to confirm."</p>
-          <div className="review-author">— Bikash T.</div>
+          <div className="review-author">— Bikash Tamang</div>
         </div>
 
         <div className="review-card">
           <div className="review-stars">★★★★★</div>
           <p className="review-text">"Premium quality as advertised. The footrest is surprisingly sturdy. Highly recommended for anyone sitting 8+ hours a day."</p>
-          <div className="review-author">— Samir M.</div>
-        </div>
-
-        <div className="raw-photo-container">
-          <p className="raw-photo-caption">Customer Photo (Submitted by Anil K.)</p>
-          {/* Using a highly realistic Unsplash photo mimicking a raw bedroom shot since AI gen failed */}
-          <img 
-            src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=1000&auto=format&fit=crop" 
-            alt="Raw photo of gaming chair in customer bedroom" 
-            className="raw-photo-img" 
-          />
+          <div className="review-author">— Samik Nepal</div>
         </div>
       </div>
 
