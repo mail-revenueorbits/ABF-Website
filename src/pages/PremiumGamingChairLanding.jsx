@@ -5,9 +5,9 @@ import './PremiumGamingChairLanding.css';
 const WHATSAPP_NUMBER = "9779802322678"; // Actual ABF number
 
 const IMAGES = [
-  "/promo/gaming-chair/V1.png",
-  "/promo/gaming-chair/V2.png",
-  "/promo/gaming-chair/V3.png"
+  "/promo/gaming-chair/V1.webp",
+  "/promo/gaming-chair/V2.webp",
+  "/promo/gaming-chair/V3.webp"
 ];
 
 const COLORS = [
