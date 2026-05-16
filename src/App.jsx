@@ -5,6 +5,7 @@ import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
 import ProductPage from './pages/ProductPage';
+import PremiumGamingChairLanding from './pages/PremiumGamingChairLanding';
 import ScrollToTop from './components/layout/ScrollToTop';
 import useProductStore from './store/productStore';
 import useCategoryStore from './store/categoryStore';
@@ -60,6 +61,9 @@ function App() {
             <Route path="shop" element={<ShopPage />} />
             <Route path="product/:id" element={<ProductPage />} />
           </Route>
+
+          {/* Promotional Landing Pages (No Layout) */}
+          <Route path="/promo/gaming-chair" element={<PremiumGamingChairLanding />} />
 
           {/* Admin Panel — lazy loaded */}
           <Route path="/admin" element={
