@@ -127,8 +127,8 @@ export default function PremiumGamingChairLanding() {
     <div className="gaming-landing-container">
       {/* Top Warranty Ribbon */}
       <div className="top-ribbon">
-        <span className="material-symbols-outlined">shield</span>
-        2 Years Warranty
+        <span className="material-symbols-outlined ribbon-icon">shield</span>
+        2 Years Warranty on Wheel and Hydraulics
       </div>
 
       {/* 4:5 Swipeable Gallery */}
