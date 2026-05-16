@@ -44,9 +44,9 @@ body {
   flex-shrink: 0;
 }
 
-.ribbon-icon {
+.top-ribbon .ribbon-icon {
   font-variation-settings: 'FILL' 1;
-  color: #22c55e;
+  color: #22c55e !important;
 }
 
 /* 4:5 Aspect Ratio Gallery */
