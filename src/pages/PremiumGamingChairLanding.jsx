@@ -4,17 +4,16 @@ import './PremiumGamingChairLanding.css';
 
 const WHATSAPP_NUMBER = "9779802322678"; // Actual ABF number
 
-const IMAGES = [
+const SHARED_IMAGES = [
   "/promo/gaming-chair/V1.webp",
   "/promo/gaming-chair/V2.webp",
   "/promo/gaming-chair/V3.webp"
 ];
 
 const COLORS = [
-  { id: 'red', name: 'Racing Red', hex: '#E53935' },
-  { id: 'black', name: 'Carbon Black', hex: '#212121' },
-  { id: 'blue', name: 'Electric Blue', hex: '#1E88E5' },
-  { id: 'white', name: 'Arctic White', hex: '#F5F5F5' }
+  { id: 'red',   name: 'Racing Red',    hex: '#E53935', image: '/promo/gaming-chair/color-red.webp' },
+  { id: 'black', name: 'Carbon Black',   hex: '#212121', image: '/promo/gaming-chair/color-black.webp' },
+  { id: 'white', name: 'Arctic White',   hex: '#F5F5F5', image: '/promo/gaming-chair/color-white.webp' },
 ];
 
 export default function PremiumGamingChairLanding() {
@@ -34,6 +33,10 @@ export default function PremiumGamingChairLanding() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  // Build the full image array: shared slides + color-specific image at the end
+  const images = [...SHARED_IMAGES, selectedColor.image];
+  const colorSlideIndex = images.length - 1;
 
   // Handle scroll detection for gallery indicators
   useEffect(() => {
@@ -57,7 +60,6 @@ export default function PremiumGamingChairLanding() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // If the form is intersecting (visible), hide the sticky CTA
         setShowStickyCTA(!entry.isIntersecting);
       },
       { rootMargin: '0px 0px -100px 0px', threshold: 0.1 }
@@ -73,6 +75,17 @@ export default function PremiumGamingChairLanding() {
       }
     };
   }, []);
+
+  // When color changes, scroll gallery to the color-specific last slide
+  const handleColorChange = (color) => {
+    setSelectedColor(color);
+    setTimeout(() => {
+      if (galleryRef.current) {
+        const width = galleryRef.current.offsetWidth;
+        galleryRef.current.scrollTo({ left: width * colorSlideIndex, behavior: 'smooth' });
+      }
+    }, 50);
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -134,14 +147,14 @@ export default function PremiumGamingChairLanding() {
       {/* 4:5 Swipeable Gallery */}
       <div className="gallery-wrapper">
         <div className="gallery-scroll" ref={galleryRef}>
-          {IMAGES.map((src, index) => (
+          {images.map((src, index) => (
             <div key={index} className="gallery-slide">
-              <img src={src} alt={`Gaming Chair Slide ${index + 1}`} className="gallery-image" />
+              <img src={src} alt={`Gaming Chair View ${index + 1}`} className="gallery-image" />
             </div>
           ))}
         </div>
         <div className="gallery-indicators">
-          {IMAGES.map((_, index) => (
+          {images.map((_, index) => (
             <div 
               key={index} 
               className={`gallery-dot ${currentSlide === index ? 'active' : ''}`}
@@ -183,11 +196,11 @@ export default function PremiumGamingChairLanding() {
           </div>
           <div className="color-options">
             {COLORS.map(color => (
-              <div 
+              <div
                 key={color.id}
                 className={`color-circle ${selectedColor.id === color.id ? 'active' : ''}`}
                 style={{ '--swatch-color': color.hex }}
-                onClick={() => setSelectedColor(color)}
+                onClick={() => handleColorChange(color)}
               />
             ))}
           </div>
