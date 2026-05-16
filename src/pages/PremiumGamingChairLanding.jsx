@@ -125,6 +125,16 @@ export default function PremiumGamingChairLanding() {
 
   return (
     <div className="gaming-landing-container">
+      {/* Top Warranty Ribbon */}
+      <div className="top-ribbon">
+        <span className="material-symbols-outlined">shield</span>
+        2 Years Warranty on Wheels &amp; Hydraulics
+        <span className="ribbon-dot">·</span>
+        Cash on Delivery
+        <span className="ribbon-dot">·</span>
+        Free Delivery Inside Valley
+      </div>
+
       {/* 4:5 Swipeable Gallery */}
       <div className="gallery-wrapper">
         <div className="gallery-scroll" ref={galleryRef}>

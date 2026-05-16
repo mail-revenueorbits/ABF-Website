@@ -14,6 +14,34 @@ body {
   background-color: #050505;
 }
 
+/* Top Warranty Ribbon */
+.top-ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: oklch(18% 0.01 30);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-dark-200);
+  white-space: nowrap;
+  overflow: hidden;
+  letter-spacing: 0.02em;
+}
+
+.top-ribbon .material-symbols-outlined {
+  font-size: 14px;
+  color: var(--color-primary-400);
+  flex-shrink: 0;
+}
+
+.ribbon-dot {
+  color: var(--color-dark-500);
+  flex-shrink: 0;
+}
+
 /* 4:5 Aspect Ratio Gallery */
 .gallery-wrapper {
   position: relative;
