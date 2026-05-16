@@ -7,6 +7,7 @@ import ShopPage from './pages/ShopPage';
 import ProductPage from './pages/ProductPage';
 import PremiumGamingChairLanding from './pages/PremiumGamingChairLanding';
 import ScrollToTop from './components/layout/ScrollToTop';
+import FloatingWhatsApp from './components/common/FloatingWhatsApp';
 import useProductStore from './store/productStore';
 import useCategoryStore from './store/categoryStore';
 import useBannerStore from './store/bannerStore';
@@ -54,6 +55,7 @@ function App() {
     <WishlistProvider>
       <BrowserRouter>
         <ScrollToTop />
+        <FloatingWhatsApp />
         <Routes>
           {/* Public Website */}
           <Route path="/" element={<Layout />}>
