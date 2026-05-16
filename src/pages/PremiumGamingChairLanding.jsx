@@ -120,6 +120,29 @@ export default function PremiumGamingChairLanding() {
       budgetRange: "Rs. 28,799",
       notes: formData.notes
     });
+
+    // 3. Fire Server-Side Conversions API (CAPI)
+    import('../lib/supabase').then(({ supabase }) => {
+      supabase.functions.invoke('meta-capi', {
+        body: {
+          eventName: 'Purchase',
+          eventId: eventId,
+          eventSourceUrl: window.location.href,
+          userData: {
+            fn: formData.name.split(' ')[0],
+            ln: formData.name.split(' ').slice(1).join(' ') || '',
+            ph: formData.phone,
+            fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || null,
+            fbc: document.cookie.match(/_fbc=([^;]+)/)?.[1] || null,
+          },
+          customData: {
+            currency: 'NPR',
+            value: 28799,
+            content_name: `Premium Gaming Chair (${selectedColor.name})`
+          }
+        }
+      }).catch(console.error); // Fire-and-forget
+    });
     
     setIsSubmitting(false);
     setIsSuccess(true);
