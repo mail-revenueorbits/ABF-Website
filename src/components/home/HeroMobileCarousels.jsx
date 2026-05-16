@@ -141,7 +141,7 @@ function HeroMobileCarousels() {
 
       {/* WhatsApp CTA banner at end */}
       <a
-        href="https://wa.me/9779802322678?text=Hi!%20I'm%20interested%20in%20your%20furniture%20collection."
+        href="https://wa.me/9779818421463?text=Hi!%20I'm%20interested%20in%20your%20furniture%20collection."
         className="hero-mob-whatsapp-banner"
         target="_blank"
         rel="noopener noreferrer"

@@ -94,7 +94,7 @@ function HeroCarousel({ slides }) {
                   <span>{slide.cta}</span>
                 </Link>
                 <a
-                  href={`https://wa.me/9779802322678?text=${encodeURIComponent(`Hi! I'm interested in ${slide.title}`)}`}
+                  href={`https://wa.me/9779818421463?text=${encodeURIComponent(`Hi! I'm interested in ${slide.title}`)}`}
                   className="hero-carousel__cta-whatsapp"
                   target="_blank"
                   rel="noopener noreferrer"

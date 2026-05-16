@@ -580,7 +580,7 @@ function CTABannerSection() {
             </p>
             <div className="cta-banner__actions">
               <a
-                href="https://wa.me/9779802322678?text=Hi!%20I'd%20like%20to%20visit%20your%20showroom.%20What%20are%20the%20timings?"
+                href="https://wa.me/9779818421463?text=Hi!%20I'd%20like%20to%20visit%20your%20showroom.%20What%20are%20the%20timings?"
                 className="cta-banner__btn-whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -593,12 +593,12 @@ function CTABannerSection() {
                 <span>Chat on WhatsApp</span>
               </a>
               <a
-                href="tel:+9779802322678"
+                href="tel:+9779818421463"
                 className="cta-banner__btn-phone"
-                aria-label="Call AB Furniture at 980-2322678"
+                aria-label="Call AB Furniture at 9818421463"
               >
                 <span className="material-symbols-outlined" aria-hidden="true">call</span>
-                <span>Call 980-2322678</span>
+                <span>Call 9818421463</span>
               </a>
             </div>
           </div>

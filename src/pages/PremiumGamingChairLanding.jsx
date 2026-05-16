@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import useInquiryStore from '../store/inquiryStore';
 import './PremiumGamingChairLanding.css';
 
-const WHATSAPP_NUMBER = "9779802322678"; // Actual ABF number
+const WHATSAPP_NUMBER = "9779818421463"; // Actual ABF number
 
 const SHARED_IMAGES = [
   "/promo/gaming-chair/V1.webp",

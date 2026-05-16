@@ -3,7 +3,7 @@
  * Generates pre-filled WhatsApp chat links.
  */
 
-const WHATSAPP_NUMBER = '9779802322678'; // Primary sales number from brief
+const WHATSAPP_NUMBER = '9779818421463'; // Primary sales number from brief
 
 /**
  * Generate a WhatsApp click-to-chat URL with a pre-filled message.

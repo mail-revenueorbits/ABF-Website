@@ -76,7 +76,7 @@ function Header() {
           <span className="promo-bar__divider promo-bar__divider--hide-mobile" aria-hidden="true" />
           <span className="promo-bar__text promo-bar__text--hide-mobile">
             <span className="material-symbols-outlined promo-bar__icon" aria-hidden="true">call</span>
-            <a href="tel:+9779802322678" className="promo-bar__link">+977 980-2322678</a>
+            <a href="tel:+9779818421463" className="promo-bar__link">+977 9818421463</a>
           </span>
         </div>
       </div>
@@ -91,12 +91,12 @@ function Header() {
             </div>
             <Link to="/" className="logo">AB Furniture</Link>
             <div className="header-actions">
-              <a href="tel:+9779802322678" className="header-contact">
+              <a href="tel:+9779818421463" className="header-contact">
                 <span className="material-symbols-outlined">call</span>
-                <span>+977 980-2322678</span>
+                <span>+977 9818421463</span>
               </a>
               <a
-                href="https://wa.me/9779802322678"
+                href="https://wa.me/9779818421463"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp us"
@@ -187,12 +187,12 @@ function Header() {
               ))}
             </div>
             <div className="mobile-menu-footer">
-              <a href="tel:+9779802322678" className="mobile-menu-contact">
+              <a href="tel:+9779818421463" className="mobile-menu-contact">
                 <span className="material-symbols-outlined">call</span>
-                +977 980-2322678
+                +977 9818421463
               </a>
               <a
-                href="https://wa.me/9779802322678"
+                href="https://wa.me/9779818421463"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mobile-menu-contact mobile-menu-contact--whatsapp"
