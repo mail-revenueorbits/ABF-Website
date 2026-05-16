@@ -4,12 +4,10 @@ import './PremiumGamingChairLanding.css';
 
 const WHATSAPP_NUMBER = "9779802322678"; // Actual ABF number
 
-// Using placeholder URLs for the gallery since exact assets weren't available in directory
 const IMAGES = [
-  "https://images.unsplash.com/photo-1598550476439-6847785fcea6?q=80&w=1200&auto=format&fit=crop", // Red chair
-  "https://images.unsplash.com/photo-1612284949511-209043c16ee0?q=80&w=1200&auto=format&fit=crop", // Posture comparison
-  "https://images.unsplash.com/photo-1598550473361-b58097b6a48f?q=80&w=1200&auto=format&fit=crop", // Recline
-  "https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=1200&auto=format&fit=crop"  // Close up leather
+  "/promo/gaming-chair/V1.png",
+  "/promo/gaming-chair/V2.png",
+  "/promo/gaming-chair/V3.png"
 ];
 
 const COLORS = [
