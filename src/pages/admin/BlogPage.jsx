@@ -116,10 +116,10 @@ function BlogPage() {
           {posts
             .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
             .map((post) => (
-              <div key={post.id} className="admin-card" style={{ display: 'flex', overflow: 'hidden' }}>
+              <div key={post.id} className="admin-card admin-blog-card">
                 {/* Cover thumbnail */}
                 {post.coverImage && (
-                  <div style={{ width: '200px', minHeight: '140px', flexShrink: 0, background: '#F5F2ED' }}>
+                  <div className="admin-blog-card-img">
                     <img
                       src={post.coverImage}
                       alt=""

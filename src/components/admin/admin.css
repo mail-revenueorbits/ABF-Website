@@ -976,9 +976,48 @@
   border: 1px solid rgba(112, 74, 46, 0.1);
 }
 
+/* Dashboard & Complex Layout Grids */
+.admin-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.admin-quick-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Blog Cards */
+.admin-blog-card {
+  display: flex;
+  overflow: hidden;
+}
+
+.admin-blog-card-img {
+  width: 200px;
+  min-height: 140px;
+  flex-shrink: 0;
+  background: #F5F2ED;
+}
+
+.admin-blog-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Page header action buttons row */
+.admin-page-header-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 /* ============================================================
    MOBILE OPTIMIZATION (max-width: 768px)
-   Touch targets 44x44px min, clear hierarchy
+   Touch targets 44px min, contained width, no horizontal scroll
    ============================================================ */
 @media (max-width: 768px) {
   /* Layout Spacing */
@@ -1109,5 +1148,34 @@
   .admin-table td {
     padding: 16px 12px;
     min-width: 120px;
+  }
+
+  /* Dashboard & Complex Layout Overrides */
+  .admin-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-quick-actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-page-header-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .admin-page-header-actions .admin-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .admin-blog-card {
+    flex-direction: column;
+  }
+
+  .admin-blog-card-img {
+    width: 100%;
+    height: 180px;
+    min-height: auto;
   }
 }

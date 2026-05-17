@@ -35,7 +35,7 @@ function Dashboard() {
           <h1 className="admin-page-title">Dashboard</h1>
           <p className="admin-page-subtitle">Welcome back. Here is your business overview.</p>
         </div>
-        <div style={{ display: 'flex', gap: '12px' }}>
+        <div className="admin-page-header-actions">
           <Link to="/admin/products" className="admin-btn admin-btn-secondary admin-btn-sm">
             <span className="material-symbols-outlined">inventory_2</span>
             Manage Products
@@ -84,13 +84,13 @@ function Dashboard() {
       </div>
 
       {/* Two-column layout */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+      <div className="admin-dashboard-grid">
         {/* Quick Actions */}
         <div className="admin-card">
           <div className="admin-card-header">
             <h3 className="admin-card-title">Quick Actions</h3>
           </div>
-          <div className="admin-card-body" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+          <div className="admin-card-body admin-quick-actions-grid">
             <Link to="/admin/products?action=new" className="admin-btn admin-btn-secondary admin-btn-sm" style={{ justifyContent: 'flex-start' }}>
               <span className="material-symbols-outlined">add_circle</span>
               Add Product
@@ -207,7 +207,7 @@ function Dashboard() {
       </div>
 
       {/* Footer stats row */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginTop: '24px' }}>
+      <div className="admin-metrics-grid" style={{ marginTop: '24px' }}>
         <div className="admin-metric-card">
           <span className="admin-metric-label">Blog Posts</span>
           <span className="admin-metric-value">{posts.length}</span>
