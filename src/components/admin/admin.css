@@ -10,22 +10,34 @@
   --text-muted: #8B7355;
 }
 
+/* Base resets for Admin Panel */
+.admin-wrapper, .admin-wrapper * {
+  box-sizing: border-box;
+}
+
 /* Layout */
 .admin-wrapper {
   display: flex;
   min-height: 100vh;
   background-color: #FAFAF8;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .admin-main {
   flex: 1;
   margin-left: 260px;
   min-height: 100vh;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .admin-content {
   padding: 32px 40px;
   max-width: 1400px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (max-width: 1024px) {
@@ -48,6 +60,8 @@
   position: sticky;
   top: 0;
   z-index: 30;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .admin-topbar-left {
@@ -318,10 +332,13 @@
 /* Table */
 .admin-table-wrapper {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
 }
 
 .admin-table {
   width: 100%;
+  min-width: 800px;
   border-collapse: collapse;
   font-size: 13px;
 }
