@@ -153,16 +153,7 @@ function ProductsPage() {
 
       {/* Bulk Actions */}
       {selectedIds.length > 0 && (
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-          padding: '12px 20px',
-          marginBottom: '16px',
-          background: 'rgba(112, 74, 46, 0.04)',
-          borderRadius: '8px',
-          border: '1px solid rgba(112, 74, 46, 0.1)'
-        }}>
+        <div className="admin-bulk-actions">
           <span style={{ fontSize: '13px', fontWeight: '600', color: 'var(--walnut)' }}>
             {selectedIds.length} selected
           </span>
