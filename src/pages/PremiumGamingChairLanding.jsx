@@ -76,6 +76,14 @@ export default function PremiumGamingChairLanding() {
     };
   }, []);
 
+  // Dynamically toggle body class for dark background on landing page
+  useEffect(() => {
+    document.body.classList.add('gaming-landing-body');
+    return () => {
+      document.body.classList.remove('gaming-landing-body');
+    };
+  }, []);
+
   // When color changes, scroll gallery to the color-specific last slide
   const handleColorChange = (color) => {
     setSelectedColor(color);

@@ -11,7 +11,7 @@
 }
 
 /* Ensure the body has a dark background so the edges on desktop aren't white */
-body {
+body.gaming-landing-body {
   background-color: #050505;
 }
 
