@@ -187,6 +187,7 @@ function BlogPage() {
         onClose={handleFormClose}
         title={editing ? `Edit: ${editing.title}` : 'New Blog Post'}
         large
+        closeOnOutsideClick={false}
         footer={
           <>
             <button className="admin-btn admin-btn-secondary" onClick={handleFormClose}>Cancel</button>

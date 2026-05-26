@@ -138,6 +138,7 @@ function ProductFormModal({ isOpen, onClose, product }) {
       onClose={onClose}
       title={isEditing ? `Edit: ${product.name}` : 'Add New Product'}
       large
+      closeOnOutsideClick={false}
       footer={
         <>
           <button className="admin-btn admin-btn-secondary" onClick={onClose}>

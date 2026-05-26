@@ -193,6 +193,7 @@ function BannersPage() {
         onClose={() => { setIsFormOpen(false); setEditing(null); }}
         title={editing ? 'Edit Banner' : 'Add Banner'}
         large
+        closeOnOutsideClick={false}
         footer={
           <>
             <button className="admin-btn admin-btn-secondary" onClick={() => { setIsFormOpen(false); setEditing(null); }}>Cancel</button>

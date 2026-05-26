@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
  * Reusable modal wrapper for admin panel.
  * Props: isOpen, onClose, title, children, footer, large
  */
-function AdminModal({ isOpen, onClose, title, children, footer, large }) {
+function AdminModal({ isOpen, onClose, title, children, footer, large, closeOnOutsideClick = true }) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -19,7 +19,7 @@ function AdminModal({ isOpen, onClose, title, children, footer, large }) {
   if (!isOpen) return null;
 
   return (
-    <div className="admin-modal-overlay" onClick={onClose}>
+    <div className="admin-modal-overlay" onClick={closeOnOutsideClick ? onClose : undefined}>
       <div
         className={`admin-modal ${large ? 'admin-modal-lg' : ''}`}
         onClick={(e) => e.stopPropagation()}

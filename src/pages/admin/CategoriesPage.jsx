@@ -144,6 +144,7 @@ function CategoriesPage() {
         isOpen={isFormOpen}
         onClose={() => setIsFormOpen(false)}
         title={editing ? 'Edit Category' : 'New Category'}
+        closeOnOutsideClick={false}
         footer={
           <>
             <button className="admin-btn admin-btn-secondary" onClick={() => setIsFormOpen(false)}>Cancel</button>
