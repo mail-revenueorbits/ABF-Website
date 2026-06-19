@@ -356,7 +356,7 @@ function ProductPage() {
                 className="pdp-whatsapp-btn"
               >
                 <span className="material-symbols-outlined" style={{ fontSize: 18 }}>chat</span>
-                <span>Talk to a Designer</span>
+                <span>Talk to a Sales Representative</span>
               </a>
             </div>
 

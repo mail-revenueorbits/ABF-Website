@@ -705,7 +705,7 @@
 }
 
 /* Very narrow phones (<=380px): drop secondary actions to a column so the
-   "Talk to a Designer" label has room without truncating. */
+   "Talk to a Sales Representative" label has room without truncating. */
 @media (max-width: 380px) {
   .pdp-secondary-actions {
     flex-direction: column;
