@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useMetadata from '../hooks/useMetadata';
 import Hero from '../components/home/Hero';
 import FeaturedCollection from '../components/home/FeaturedCollection';
 import { getBestsellerProducts, getNewArrivals } from '../services/productService';
@@ -63,6 +64,69 @@ function useScrollReveal(ref) {
 function HomePage() {
   const pageRef = useRef(null);
   useScrollReveal(pageRef);
+
+  // Set homepage dynamic SEO metadata
+  useMetadata(
+    "Luxury Handcrafted Furniture in Kathmandu",
+    "Shop premium, custom-made furniture in Nepal. From royal teak wood sofas to ergonomic office chairs and Italian marble dining tables. Crafted for exceptional Nepali homes."
+  );
+
+  // Inject LocalBusiness Schema JSON-LD for local SEO maps search ("sofa near me")
+  useEffect(() => {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "FurnitureStore",
+      "name": "AB Furniture & Furnishing",
+      "image": "https://abfurniturenepal.com/logo.png",
+      "@id": "https://abfurniturenepal.com",
+      "url": "https://abfurniturenepal.com",
+      "telephone": "+977-98XXXXXXXX",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ring Road",
+        "addressLocality": "Kathmandu",
+        "postalCode": "44600",
+        "addressCountry": "NP"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 27.7172,
+        "longitude": 85.3240
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Sunday"
+        ],
+        "opens": "09:00",
+        "closes": "19:00"
+      },
+      "sameAs": [
+        "https://www.facebook.com/tr?id=1660836331802100",
+        "https://www.instagram.com/abfurniture.np"
+      ]
+    };
+
+    const scriptId = 'local-business-jsonld';
+    let script = document.getElementById(scriptId);
+    if (!script) {
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.type = 'application/ld+json';
+      document.head.appendChild(script);
+    }
+    script.text = JSON.stringify(schema);
+
+    return () => {
+      const existingScript = document.getElementById(scriptId);
+      if (existingScript) existingScript.remove();
+    };
+  }, []);
 
   return (
     <div ref={pageRef}>

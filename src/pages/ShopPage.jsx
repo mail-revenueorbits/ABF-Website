@@ -4,6 +4,7 @@ import { queryProducts, getCategories } from '../services/productService';
 import useProductStore from '../store/productStore';
 import useCategoryStore from '../store/categoryStore';
 import ProductCard from '../components/shop/ProductCard';
+import useMetadata from '../hooks/useMetadata';
 import './ShopPage.css';
 
 const SORT_OPTIONS = [
@@ -123,6 +124,32 @@ function ShopPage() {
     activeCategory === 'all'
       ? 'All Products'
       : categories.find((c) => c.slug === activeCategory)?.name || 'All Products';
+
+  // Dynamic SEO metadata based on active category
+  let seoTitle = 'Premium Furniture Shop & Catalog';
+  let seoDesc = "Browse Nepal's finest luxury furniture catalog. Order custom sofa sets, luxury beds, dining tables, and premium ergonomic office chairs online or visit our Kathmandu workshop.";
+
+  if (activeCategory !== 'all') {
+    const categoryLower = activeCategory.toLowerCase();
+    if (categoryLower.includes('chair')) {
+      seoTitle = 'Premium Ergonomic Office Chairs in Nepal';
+      seoDesc = 'Buy premium ergonomic office chairs in Nepal. Comfortable, adjustable, high-back revolving mesh chairs for workspaces at the best prices. Delivery across Nepal.';
+    } else if (categoryLower.includes('sofa')) {
+      seoTitle = 'Luxury Custom Sofa Sets & Couch Price in Nepal';
+      seoDesc = 'Shop handcrafted L-shape sofas, sectional sofa sets, and luxury wood couches in Kathmandu, Nepal. Custom designs, premium Sheesham wood, and ultra-comfortable cushioning.';
+    } else if (categoryLower.includes('dining')) {
+      seoTitle = 'Premium Wood & Marble Dining Table Sets in Nepal';
+      seoDesc = 'Find the perfect dining table set in Nepal. High-end solid teak wood dining tables, Italian marble 4-seater and 6-seater dining sets at custom sizes.';
+    } else if (categoryLower.includes('bed')) {
+      seoTitle = 'Luxury Wooden Beds & Bedroom Furniture in Nepal';
+      seoDesc = 'Buy beautiful wooden double beds, queen size beds, and storage beds in Kathmandu, Nepal. Premium solid wood construction customized to your room space.';
+    } else {
+      seoTitle = `Buy Premium ${activeCategoryName} in Nepal`;
+      seoDesc = `Discover premium custom ${activeCategoryName} at AB Furniture & Furnishing Nepal. Crafted with high-grade solid wood and modern materials for your home and office.`;
+    }
+  }
+
+  useMetadata(seoTitle, seoDesc);
 
   return (
     <div className="shop-page">

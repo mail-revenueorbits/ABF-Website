@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import './ProductPage.css';
+import useMetadata from '../hooks/useMetadata';
 import {
   getProductById,
   getRelatedProducts,
@@ -47,6 +48,57 @@ function ProductPage() {
   const mainImageRef = useRef(null);
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { recentlyViewed, addToRecentlyViewed } = useRecentlyViewed();
+
+  // Dynamic metadata for Search Engine Optimization (SEO)
+  useMetadata(
+    product ? `Buy ${product.name} in Nepal` : 'Loading Product...',
+    product
+      ? `Shop ${product.name} at AB Furniture Kathmandu. Handcrafted with premium ${product.material || 'materials'}. Price: ${formatNPR(product.salePrice || product.price)}.`
+      : 'AB Furniture - Premium handcrafted furniture in Sheesham Wood, Teak, and Italian Marble.'
+  );
+
+  // Inject Product Schema JSON-LD for rich search results (rich snippets)
+  useEffect(() => {
+    if (!product) return;
+
+    const schema = {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": product.name,
+      "image": product.images || [],
+      "description": plainDescription(product.description),
+      "sku": product.sku || product.id,
+      "brand": {
+        "@type": "Brand",
+        "name": "AB Furniture"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": window.location.href,
+        "priceCurrency": "NPR",
+        "price": product.salePrice || product.price,
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": product.stockStatus === 'out_of_stock'
+          ? "https://schema.org/OutOfStock"
+          : "https://schema.org/InStock"
+      }
+    };
+
+    const scriptId = 'product-jsonld';
+    let script = document.getElementById(scriptId);
+    if (!script) {
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.type = 'application/ld+json';
+      document.head.appendChild(script);
+    }
+    script.text = JSON.stringify(schema);
+
+    return () => {
+      const existingScript = document.getElementById(scriptId);
+      if (existingScript) existingScript.remove();
+    };
+  }, [product]);
 
   // Fetch product
   useEffect(() => {
