@@ -262,15 +262,20 @@ function ProductPage() {
               <span
                 className="pdp-stock-dot"
                 style={{
-                  backgroundColor: product.inStock ? '#2D6A4F' : '#C41E3A',
+                  backgroundColor:
+                    product.stockStatus === 'in_stock'
+                      ? '#2D6A4F'
+                      : product.stockStatus === 'made_to_order'
+                        ? '#3182CE'
+                        : '#C41E3A',
                 }}
               />
               <span>
-                {product.inStock
-                  ? product.madeToOrder
+                {product.stockStatus === 'in_stock'
+                  ? 'In Stock'
+                  : product.stockStatus === 'made_to_order'
                     ? 'In Stock / Made to Order Available'
-                    : 'In Stock'
-                  : 'Out of Stock'}
+                    : 'Out of Stock'}
               </span>
             </div>
 
