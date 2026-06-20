@@ -120,11 +120,23 @@ export async function queryProducts({
   let filtered = [...products];
 
   // Category filter — Shop passes the category slug via URL (?category=sofas).
-  // Match against either the slug or the internal cat_* id for flexibility.
+  // Resolve the category slug to find the corresponding category object, then filter products.
   if (category && category !== 'all') {
-    filtered = filtered.filter(
-      (p) => p.category === category || p.categoryId === category
+    const categories = getCategoriesData();
+    const matchedCategory = categories.find(
+      (c) => c.slug === category || c.id === category
     );
+
+    if (matchedCategory) {
+      filtered = filtered.filter(
+        (p) => p.categoryId === matchedCategory.id || p.category === matchedCategory.slug
+      );
+    } else {
+      // Fallback matching
+      filtered = filtered.filter(
+        (p) => p.category === category || p.categoryId === category
+      );
+    }
   }
 
   // Search filter
