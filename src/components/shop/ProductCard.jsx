@@ -17,6 +17,10 @@ function ProductCard({ product }) {
   const wishlisted = isInWishlist(product.id);
   const [imgLoaded, setImgLoaded] = useState(false);
 
+  const hasImages = Array.isArray(product.images) && product.images.length > 0;
+  const lifestyleImage = product.lifestyleImage || (hasImages ? (product.images.length > 1 ? product.images[product.images.length - 1] : product.images[0]) : '/products/_placeholder.jpg');
+  const studioImage = hasImages ? product.images[0] : '/products/_placeholder.jpg';
+
   const handleWishlistClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -33,15 +37,16 @@ function ProductCard({ product }) {
       <div className="pc-image-wrap">
         {/* Lifestyle image (default visible) */}
         <img
-          src={product.lifestyleImage}
-          alt={`${product.name} in room setting`}
+          src={lifestyleImage}
+          alt={`${product.name} lifestyle shot`}
           className="pc-img pc-img--lifestyle"
           loading="lazy"
           onLoad={() => setImgLoaded(true)}
+          onError={() => setImgLoaded(true)}
         />
         {/* Studio image (visible on hover) */}
         <img
-          src={product.images[0]}
+          src={studioImage}
           alt={`${product.name} studio shot`}
           className="pc-img pc-img--studio"
           loading="lazy"
