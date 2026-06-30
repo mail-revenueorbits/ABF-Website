@@ -519,13 +519,12 @@ img {
   color: var(--text-muted);
 }
 
-.overline {
+.custom-overline {
   font-family: var(--font-body);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  text-decoration: none !important;
 }
 
 .overline-lg {
@@ -1435,6 +1434,11 @@ img {
 }
 
 .section-overline {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
   color: var(--color-primary-500);
   margin-bottom: 16px;
   display: flex;
@@ -1838,7 +1842,7 @@ img {
   margin-bottom: 96px;
 }
 
-.trust-header .overline {
+.trust-header .custom-overline {
   color: var(--color-primary-500);
   margin-bottom: 16px;
 }
@@ -1919,7 +1923,7 @@ img {
   margin: 0 auto;
 }
 
-.newsletter-inner .overline {
+.newsletter-inner .custom-overline {
   color: var(--color-wood-600);
   margin-bottom: 24px;
 }

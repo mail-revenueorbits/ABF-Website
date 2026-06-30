@@ -29,7 +29,7 @@ function Newsletter() {
     <section className="newsletter-section" ref={sectionRef}>
       <div className="container">
         <div className="newsletter-inner reveal">
-          <p className="overline">Stay Connected</p>
+          <p className="custom-overline">Stay Connected</p>
           <h2 className="heading-2">The Inner Circle</h2>
           <p className="body-md">
             Be the first to discover new collections, exclusive offers,

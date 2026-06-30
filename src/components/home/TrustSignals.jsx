@@ -43,7 +43,7 @@ function TrustSignals() {
     <section className="trust-section" ref={sectionRef}>
       <div className="container">
         <div className="trust-header reveal">
-          <p className="overline">Why Choose AB Furniture</p>
+          <p className="custom-overline">Why Choose AB Furniture</p>
           <h2 className="heading-2">The AB Difference</h2>
         </div>
         <div className="trust-grid">

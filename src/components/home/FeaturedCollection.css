@@ -42,7 +42,7 @@
   flex: 1;
 }
 
-.featured-header .overline {
+.featured-header .section-overline {
   font-family: var(--font-body, 'Bricolage Grotesque', sans-serif);
 }
 

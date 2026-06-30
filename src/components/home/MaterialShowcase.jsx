@@ -46,7 +46,7 @@ function MaterialShowcase() {
     <section className="materials-section" ref={sectionRef}>
       <div className="container">
         <div className="section-header-centered reveal" style={{ marginBottom: '80px' }}>
-          <p className="overline section-overline section-overline-centered" style={{ color: 'var(--amber)' }}>
+          <p className="section-overline section-overline-centered" style={{ color: 'var(--amber)' }}>
             Our Materials
           </p>
           <h2 className="heading-1" style={{ color: 'var(--ivory)' }}>

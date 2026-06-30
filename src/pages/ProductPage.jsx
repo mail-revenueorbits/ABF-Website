@@ -565,7 +565,7 @@ function ProductPage() {
           <div className="container">
             <div className="pdp-related-header">
               <div>
-                <p className="overline section-overline">You May Also Like</p>
+                <p className="section-overline">You May Also Like</p>
                 <h2 className="heading-2">Related Products</h2>
               </div>
               <Link to={`/shop?category=${product.category}`} className="view-all">
@@ -587,7 +587,7 @@ function ProductPage() {
           <div className="container">
             <div className="pdp-related-header">
               <div>
-                <p className="overline section-overline">Keep Exploring</p>
+                <p className="section-overline">Keep Exploring</p>
                 <h2 className="heading-2">Recently Viewed</h2>
               </div>
             </div>

@@ -53,7 +53,7 @@ function FeaturedCollection() {
       <div className="container">
         <div className="featured-header">
           <div className="section-header reveal">
-            <p className="overline section-overline">Curated For You</p>
+            <p className="section-overline">Curated For You</p>
             <h2 className="heading-1 section-title">Popular Picks</h2>
             <p className="body-lg section-subtitle">
               Our most-loved pieces chosen by hundreds of happy customers.

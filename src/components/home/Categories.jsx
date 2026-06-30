@@ -60,7 +60,7 @@ function Categories() {
     <section className="categories-section" ref={sectionRef}>
       <div className="container">
         <div className="section-header reveal">
-          <p className="overline section-overline">Collections</p>
+          <p className="section-overline">Collections</p>
           <h2 className="heading-1 section-title">Curated for Every Room</h2>
           <p className="body-lg section-subtitle">
             From the living room to the boardroom, each collection is crafted
