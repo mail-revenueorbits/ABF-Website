@@ -3,7 +3,7 @@
    ============================================================ */
 
 .pdp {
-  padding: 32px var(--margin-edge) 0;
+  padding: 32px var(--margin-edge) 100px;
   max-width: var(--container-max);
   margin: 0 auto;
 }
@@ -600,7 +600,7 @@
    ============================================================ */
 @media (max-width: 640px) {
   .pdp {
-    padding: 16px var(--margin-edge) 0;
+    padding: 16px var(--margin-edge) 60px;
   }
 
   .pdp-breadcrumbs {

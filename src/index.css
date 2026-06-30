@@ -525,6 +525,7 @@ img {
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
+  text-decoration: none !important;
 }
 
 .overline-lg {
