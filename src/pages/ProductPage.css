@@ -94,7 +94,7 @@
 
 .pdp-main-image {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   background-color: var(--ivory-warm);
   overflow: hidden;
   cursor: crosshair;
@@ -562,7 +562,7 @@
 }
 
 .pdp-loading-main {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   border-radius: 0;
 }
 
