@@ -52,6 +52,7 @@ function getCroppedImg(imageSrc, pixelCrop) {
 function ImageCropModal({ imageSrc, onCropComplete, onCancel, currentIndex, totalCount }) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
+  const [minZoom, setMinZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
   const onCropChange = useCallback((crop) => setCrop(crop), []);
@@ -61,6 +62,23 @@ function ImageCropModal({ imageSrc, onCropComplete, onCancel, currentIndex, tota
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
+  /**
+   * Called by react-easy-crop when the image's natural dimensions are known.
+   * We compute the minimum zoom so the entire image fits inside the 1:1 crop area.
+   */
+  const onMediaLoaded = useCallback((mediaSize) => {
+    const { naturalWidth, naturalHeight } = mediaSize;
+    // For a 1:1 crop with objectFit="contain", react-easy-crop scales the image
+    // so the longer side fits the container. We want to allow zooming out enough
+    // that the full image is visible. The library handles this via minZoom prop.
+    // A safe minimum: ratio of shorter side / longer side (ensures full coverage).
+    const computedMin = Math.min(naturalWidth, naturalHeight) / Math.max(naturalWidth, naturalHeight);
+    // Clamp to a reasonable floor
+    const safeMin = Math.max(computedMin, 0.3);
+    setMinZoom(safeMin);
+    setZoom(1); // reset to default
+  }, []);
+
   const handleConfirm = useCallback(async () => {
     if (!croppedAreaPixels) return;
     try {
@@ -68,6 +86,7 @@ function ImageCropModal({ imageSrc, onCropComplete, onCancel, currentIndex, tota
       // Reset state for next image
       setCrop({ x: 0, y: 0 });
       setZoom(1);
+      setMinZoom(1);
       onCropComplete(croppedDataUrl);
     } catch (err) {
       console.error('Crop failed:', err);
@@ -96,10 +115,13 @@ function ImageCropModal({ imageSrc, onCropComplete, onCancel, currentIndex, tota
             image={imageSrc}
             crop={crop}
             zoom={zoom}
+            minZoom={minZoom}
             aspect={1}
+            objectFit="contain"
             onCropChange={onCropChange}
             onCropComplete={onCropAreaComplete}
             onZoomChange={onZoomChange}
+            onMediaLoaded={onMediaLoaded}
             cropShape="rect"
             showGrid={true}
             style={{
@@ -115,7 +137,7 @@ function ImageCropModal({ imageSrc, onCropComplete, onCancel, currentIndex, tota
           </span>
           <input
             type="range"
-            min={1}
+            min={minZoom}
             max={3}
             step={0.05}
             value={zoom}
