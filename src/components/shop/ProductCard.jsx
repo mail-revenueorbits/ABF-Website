@@ -18,8 +18,8 @@ function ProductCard({ product }) {
   const [imgLoaded, setImgLoaded] = useState(false);
 
   const hasImages = Array.isArray(product.images) && product.images.length > 0;
-  const lifestyleImage = product.lifestyleImage || (hasImages ? (product.images.length > 1 ? product.images[product.images.length - 1] : product.images[0]) : '/products/_placeholder.jpg');
-  const studioImage = hasImages ? product.images[0] : '/products/_placeholder.jpg';
+  const primaryImage = hasImages ? product.images[0] : (product.lifestyleImage || '/products/_placeholder.jpg');
+  const hoverImage = hasImages ? (product.images.length > 1 ? product.images[1] : product.images[0]) : primaryImage;
 
   const handleWishlistClick = (e) => {
     e.preventDefault();
@@ -35,22 +35,24 @@ function ProductCard({ product }) {
     >
       {/* Image container with hover swap */}
       <div className="pc-image-wrap">
-        {/* Lifestyle image (default visible) */}
+        {/* Primary image (default visible) */}
         <img
-          src={lifestyleImage}
-          alt={`${product.name} lifestyle shot`}
+          src={primaryImage}
+          alt={`${product.name} primary view`}
           className="pc-img pc-img--lifestyle"
           loading="lazy"
           onLoad={() => setImgLoaded(true)}
           onError={() => setImgLoaded(true)}
         />
-        {/* Studio image (visible on hover) */}
-        <img
-          src={studioImage}
-          alt={`${product.name} studio shot`}
-          className="pc-img pc-img--studio"
-          loading="lazy"
-        />
+        {/* Alternate image (visible on hover) */}
+        {hasImages && product.images.length > 1 && (
+          <img
+            src={hoverImage}
+            alt={`${product.name} alternate view`}
+            className="pc-img pc-img--studio"
+            loading="lazy"
+          />
+        )}
 
         {/* Skeleton while loading */}
         {!imgLoaded && <div className="pc-img-skeleton skeleton-shimmer" />}

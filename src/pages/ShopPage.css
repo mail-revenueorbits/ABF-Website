@@ -527,7 +527,7 @@
 
 .pc-skeleton-img {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   border-radius: 8px;
   background: var(--color-ivory-200, #F5F0E8);
 }

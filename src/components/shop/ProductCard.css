@@ -28,7 +28,7 @@
 
 .pc-image-wrap {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   background: var(--color-ivory-200, #F5F0E8);
   margin-bottom: 16px;
