@@ -711,6 +711,57 @@
   background: #C53030;
 }
 
+.admin-image-preview-index {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.admin-image-preview-reorder {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.admin-image-preview:hover .admin-image-preview-reorder {
+  opacity: 1;
+}
+
+.admin-image-preview-move {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.admin-image-preview-move:hover {
+  background: rgba(0, 0, 0, 0.85);
+}
+
 /* Modal/Dialog */
 .admin-modal-overlay {
   position: fixed;

@@ -130,6 +130,20 @@ function ImageUploader({ images = [], onChange, maxImages = 8 }) {
     onChange(newImages);
   }, [images, onChange]);
 
+  const handleMoveLeft = useCallback((index) => {
+    if (index <= 0) return;
+    const newImages = [...images];
+    [newImages[index - 1], newImages[index]] = [newImages[index], newImages[index - 1]];
+    onChange(newImages);
+  }, [images, onChange]);
+
+  const handleMoveRight = useCallback((index) => {
+    if (index >= images.length - 1) return;
+    const newImages = [...images];
+    [newImages[index], newImages[index + 1]] = [newImages[index + 1], newImages[index]];
+    onChange(newImages);
+  }, [images, onChange]);
+
   const isCropping = cropQueue.length > 0;
 
   return (
@@ -193,6 +207,7 @@ function ImageUploader({ images = [], onChange, maxImages = 8 }) {
           {images.map((src, i) => (
             <div key={i} className="admin-image-preview">
               <img src={src} alt={`Upload ${i + 1}`} />
+              <span className="admin-image-preview-index">{i + 1}</span>
               <button
                 type="button"
                 className="admin-image-preview-remove"
@@ -201,6 +216,28 @@ function ImageUploader({ images = [], onChange, maxImages = 8 }) {
               >
                 <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>close</span>
               </button>
+              <div className="admin-image-preview-reorder">
+                {i > 0 && (
+                  <button
+                    type="button"
+                    className="admin-image-preview-move"
+                    onClick={() => handleMoveLeft(i)}
+                    title="Move left"
+                  >
+                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>chevron_left</span>
+                  </button>
+                )}
+                {i < images.length - 1 && (
+                  <button
+                    type="button"
+                    className="admin-image-preview-move"
+                    onClick={() => handleMoveRight(i)}
+                    title="Move right"
+                  >
+                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>chevron_right</span>
+                  </button>
+                )}
+              </div>
             </div>
           ))}
         </div>
