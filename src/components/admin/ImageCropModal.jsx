@@ -64,19 +64,19 @@ function ImageCropModal({ imageSrc, onCropComplete, onCancel, currentIndex, tota
 
   /**
    * Called by react-easy-crop when the image's natural dimensions are known.
-   * We compute the minimum zoom so the entire image fits inside the 1:1 crop area.
+   * We compute the minimum zoom so the entire image fits inside the 1:1 crop area,
+   * and default the zoom to that value so the modal opens showing everything.
    */
   const onMediaLoaded = useCallback((mediaSize) => {
     const { naturalWidth, naturalHeight } = mediaSize;
-    // For a 1:1 crop with objectFit="contain", react-easy-crop scales the image
-    // so the longer side fits the container. We want to allow zooming out enough
-    // that the full image is visible. The library handles this via minZoom prop.
-    // A safe minimum: ratio of shorter side / longer side (ensures full coverage).
-    const computedMin = Math.min(naturalWidth, naturalHeight) / Math.max(naturalWidth, naturalHeight);
-    // Clamp to a reasonable floor
-    const safeMin = Math.max(computedMin, 0.3);
+    // Ratio of shorter/longer side, with a safety factor so the full image
+    // is comfortably inside the crop area (objectFit="contain" internal scaling
+    // can differ slightly from the raw ratio).
+    const ratio = Math.min(naturalWidth, naturalHeight) / Math.max(naturalWidth, naturalHeight);
+    const safeMin = Math.max(ratio * 0.85, 0.2);
     setMinZoom(safeMin);
-    setZoom(1); // reset to default
+    // Start fully zoomed out so the entire image is visible by default
+    setZoom(safeMin);
   }, []);
 
   const handleConfirm = useCallback(async () => {
