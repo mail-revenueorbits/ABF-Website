@@ -6,7 +6,7 @@ import './Header.css';
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { count: wishlistCount } = useWishlist();
+  const { count: wishlistCount, openWishlist } = useWishlist();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -103,12 +103,18 @@ function Header() {
               >
                 <span className="material-symbols-outlined">chat</span>
               </a>
-              <Link to="/shop" aria-label="Wishlist" style={{ position: 'relative' }}>
+              <button
+                type="button"
+                onClick={openWishlist}
+                className="header-icon-btn"
+                aria-label="View Saved Wishlist"
+                style={{ position: 'relative' }}
+              >
                 <span className="material-symbols-outlined">favorite_border</span>
                 {wishlistCount > 0 && (
                   <span className="header-badge">{wishlistCount}</span>
                 )}
-              </Link>
+              </button>
             </div>
           </div>
           <nav className="header-nav">
@@ -127,12 +133,18 @@ function Header() {
                 <Link to="/shop" aria-label="Search">
                   <span className="material-symbols-outlined">search</span>
                 </Link>
-                <Link to="/shop" aria-label="Wishlist" style={{ position: 'relative' }}>
+                <button
+                  type="button"
+                  onClick={openWishlist}
+                  className="header-icon-btn"
+                  aria-label="View Saved Wishlist"
+                  style={{ position: 'relative' }}
+                >
                   <span className="material-symbols-outlined">favorite_border</span>
                   {wishlistCount > 0 && (
                     <span className="header-badge">{wishlistCount}</span>
                   )}
-                </Link>
+                </button>
               </div>
             </div>
           </nav>
@@ -148,12 +160,18 @@ function Header() {
             <Link to="/shop" aria-label="Search">
               <span className="material-symbols-outlined" style={{ color: 'var(--walnut)' }}>search</span>
             </Link>
-            <Link to="/shop" aria-label="Wishlist" style={{ position: 'relative' }}>
+            <button
+              type="button"
+              onClick={openWishlist}
+              className="header-icon-btn"
+              aria-label="View Saved Wishlist"
+              style={{ position: 'relative' }}
+            >
               <span className="material-symbols-outlined" style={{ color: 'var(--walnut)' }}>favorite_border</span>
               {wishlistCount > 0 && (
                 <span className="header-badge">{wishlistCount}</span>
               )}
-            </Link>
+            </button>
           </div>
         </div>
       </header>

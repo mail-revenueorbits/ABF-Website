@@ -177,7 +177,13 @@
   gap: 16px;
 }
 
-.header-actions a {
+.header-actions a,
+.header-actions button,
+.header-icon-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
   display: flex;
   align-items: center;
   color: var(--color-wood-600, #704A2E);
@@ -185,11 +191,14 @@
   position: relative;
 }
 
-.header-actions a:hover {
+.header-actions a:hover,
+.header-actions button:hover,
+.header-icon-btn:hover {
   color: var(--color-primary-600, #D04516);
 }
 
-.header-actions .material-symbols-outlined {
+.header-actions .material-symbols-outlined,
+.header-icon-btn .material-symbols-outlined {
   font-size: 22px;
 }
 

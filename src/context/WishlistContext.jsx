@@ -15,10 +15,23 @@ function loadFromStorage() {
 
 export function WishlistProvider({ children }) {
   const [items, setItems] = useState(loadFromStorage);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items]);
+
+  const openWishlist = useCallback(() => {
+    setIsOpen(true);
+  }, []);
+
+  const closeWishlist = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
+  const toggleWishlistDrawer = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
 
   const addToWishlist = useCallback((productId) => {
     setItems((prev) => {
@@ -29,6 +42,10 @@ export function WishlistProvider({ children }) {
 
   const removeFromWishlist = useCallback((productId) => {
     setItems((prev) => prev.filter((id) => id !== productId));
+  }, []);
+
+  const clearWishlist = useCallback(() => {
+    setItems([]);
   }, []);
 
   const toggleWishlist = useCallback((productId) => {
@@ -48,9 +65,14 @@ export function WishlistProvider({ children }) {
   const value = {
     items,
     count: items.length,
+    isOpen,
+    openWishlist,
+    closeWishlist,
+    toggleWishlistDrawer,
     addToWishlist,
     removeFromWishlist,
     toggleWishlist,
+    clearWishlist,
     isInWishlist,
   };
 
