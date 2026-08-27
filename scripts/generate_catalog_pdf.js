@@ -3,11 +3,16 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 import sharp from 'sharp';
+import { createClient } from '@supabase/supabase-js';
+import dotenv from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const chairsRaw = JSON.parse(fs.readFileSync(path.join(__dirname, 'chairs_and_bars_export.json'), 'utf8'));
+// Load env vars
+const envPath = path.join(__dirname, '..', '.env.local');
+const envConfig = dotenv.parse(fs.readFileSync(envPath, 'utf8'));
+const supabase = createClient(envConfig.VITE_SUPABASE_URL, envConfig.VITE_SUPABASE_ANON_KEY);
 
 // Format currency
 function formatNPR(amount) {
@@ -67,113 +72,69 @@ function parseColorOptions(colorStr) {
   return parsed;
 }
 
-const productEnhancements = [
-  {
-    id: "prod_1787141693671",
-    catalogTitle: "Maroon Channelled Velvet Chair",
-    modelCode: "ABF-CC01",
+// Editorial Category Labels & Tagline highlights matching each piece
+const editorialMeta = {
+  "prod_1787141693671": {
     categoryLabel: "Commercial Dining & Cafe",
     highlight: "Vertical channel stitching with curved armrests and tapered matte black metal legs.",
   },
-  {
-    id: "prod_1787141441447",
-    catalogTitle: "Light Grey Curved Velvet Chair",
-    modelCode: "ABF-CC02",
+  "prod_1787141441447": {
     categoryLabel: "Commercial Dining & Cafe",
     highlight: "Sculptural barrel backrest with deep high-resilience foam cushioning.",
   },
-  {
-    id: "prod_1787141789104",
-    catalogTitle: "Royal Blue Channelled Chair",
-    modelCode: "ABF-CC03",
+  "prod_1787141789104": {
     categoryLabel: "Commercial Dining & Cafe",
     highlight: "Ergonomic curved arm support with plush sapphire velvet and heavy gauge metal frame.",
   },
-  {
-    id: "prod_1787141337981",
-    catalogTitle: "Cream Curved Velvet Chair",
-    modelCode: "ABF-CC04",
+  "prod_1787141337981": {
     categoryLabel: "Commercial Dining & Cafe",
     highlight: "Minimalist rounded back in warm ivory velvet with natural timber-finish metal legs.",
   },
-  {
-    id: "prod_1787141391808",
-    catalogTitle: "Caramel Brown Curved Velvet Chair",
-    modelCode: "ABF-CC05",
+  "prod_1787141391808": {
     categoryLabel: "Commercial Dining & Cafe",
     highlight: "Rich mocha brown velvet dining chair with wraparound backrest and stable base.",
   },
-  {
-    id: "prod_1787140890839",
-    catalogTitle: "Classic White Sheesham Wood Chair",
-    modelCode: "ABF-CC06",
+  "prod_1787140890839": {
     categoryLabel: "Solid Wood Craftsmanship",
     highlight: "Solid Sheesham hardwood construction with padded curved back and customizable polish.",
   },
-  {
-    id: "prod_1787140935982",
-    catalogTitle: "Contemporary Solid Wood Chair",
-    modelCode: "ABF-CC07",
+  "prod_1787140935982": {
     categoryLabel: "Solid Wood Craftsmanship",
     highlight: "Architectural wooden frame with durable commercial upholstery for high-traffic dining.",
   },
-  {
-    id: "prod_1787141058943",
-    catalogTitle: "Sapphire Blue Channelled Chair",
-    modelCode: "ABF-CC08",
+  "prod_1787141058943": {
     categoryLabel: "Commercial Dining & Cafe",
     highlight: "Vibrant sapphire blue upholstery with tailored channel stitching and reinforced steel base.",
   },
-  {
-    id: "prod_1787141095439",
-    catalogTitle: "Blush Pink Scallop Crown Chair",
-    modelCode: "ABF-CC09",
+  "prod_1787141095439": {
     categoryLabel: "Statement Accent & Dining",
     highlight: "Signature fluted crown backrest with lustrous brass-finished metal legs.",
   },
-  {
-    id: "prod_1787141138247",
-    catalogTitle: "Aqua Blue Scallop Crown Chair",
-    modelCode: "ABF-CC10",
+  "prod_1787141138247": {
     categoryLabel: "Statement Accent & Dining",
     highlight: "Fluted seashell backrest in pastel aqua velvet with gold-tipped tapered legs.",
   },
-  {
-    id: "prod_1787141190088",
-    catalogTitle: "Dusty Rose Keyhole Velvet Chair",
-    modelCode: "ABF-CC11",
+  "prod_1787141190088": {
     categoryLabel: "Mid-Century Modern Seating",
     highlight: "Mid-century keyhole cutout backrest with natural timber-finish tapered legs.",
   },
-  {
-    id: "prod_1787141257920",
-    catalogTitle: "Warm Brown Keyhole Velvet Chair",
-    modelCode: "ABF-CC12",
+  "prod_1787141257920": {
     categoryLabel: "Mid-Century Modern Seating",
     highlight: "Sculpted ergonomic keyhole backrest in warm caramel velvet with solid reinforced legs.",
   },
-  {
-    id: "prod_1787141487631",
-    catalogTitle: "Slate Grey Channelled Velvet Chair",
-    modelCode: "ABF-CC13",
+  "prod_1787141487631": {
     categoryLabel: "Commercial Dining & Cafe",
     highlight: "Neutral slate grey upholstered chair with ergonomic contours and powder-coated legs.",
   },
-  {
-    id: "prod_1787141898729",
-    catalogTitle: "Bar Chair",
-    modelCode: "ABF-BC01 / BROWN",
+  "prod_1787141898729": {
     categoryLabel: "High-Counter & Bar Seating",
     highlight: "Ergonomic high-back bar chair with footrest support and durable commercial frame.",
   },
-  {
-    id: "prod_1787141954104",
-    catalogTitle: "Bar Chair",
-    modelCode: "ABF-BC02 / GREY",
+  "prod_1787141954104": {
     categoryLabel: "High-Counter & Bar Seating",
     highlight: "Sculptural high-back counter seating with footrest in light grey velvet upholstery.",
   }
-];
+};
 
 const assetsDir = path.join(__dirname, 'catalog_assets');
 if (!fs.existsSync(assetsDir)) {
@@ -204,25 +165,60 @@ async function optimizeImage(url, filename) {
 }
 
 async function prepareAllData() {
-  console.log('Loading & compressing 15 catalog items...');
+  console.log('Fetching live product data from Supabase with exact SKUs...');
+  
+  const { data: cafeChairs, error: e1 } = await supabase
+    .from('products')
+    .select('*')
+    .eq('category_id', 'cat_cafe')
+    .eq('published', true)
+    .order('created_at', { ascending: true });
+
+  const { data: barChairs, error: e2 } = await supabase
+    .from('products')
+    .select('*')
+    .in('id', ['prod_1787141898729', 'prod_1787141954104'])
+    .order('created_at', { ascending: true });
+
+  if (e1 || e2) {
+    console.error('Supabase fetch error:', e1 || e2);
+  }
+
+  const liveItems = [...(cafeChairs || []), ...(barChairs || [])];
+  console.log(`Loaded ${liveItems.length} live products from database.`);
+
   const preparedItems = [];
 
-  for (let i = 0; i < chairsRaw.length; i++) {
-    const c = chairsRaw[i];
-    const enh = productEnhancements.find(e => e.id === c.id) || {
-      catalogTitle: c.name || `Seating ${i + 1}`,
-      modelCode: c.sku ? `ABF-${c.sku}` : `ABF-CH${String(i + 1).padStart(2, '0')}`,
-      categoryLabel: "Commercial & Dining Seating",
-      highlight: "Handcrafted commercial and dining chair by AB Furniture Kathmandu.",
+  for (let i = 0; i < liveItems.length; i++) {
+    const c = liveItems[i];
+    const meta = editorialMeta[c.id] || {
+      categoryLabel: c.category_id === 'cat_bar' ? "High-Counter & Bar Seating" : "Commercial & Dining Seating",
+      highlight: "Handcrafted commercial seating by AB Furniture Kathmandu.",
     };
-    const dims = typeof c.dimensions === 'string' ? JSON.parse(c.dimensions || '{}') : (c.dimensions || {});
-    const rawImages = typeof c.images === 'string' ? JSON.parse(c.images || '[]') : (c.images || []);
+
+    // Ensure clean SKU
+    const skuCode = c.sku || `ABF-CH${String(i + 1).padStart(2, '0')}`;
+
+    let dims = {};
+    if (typeof c.dimensions === 'string') {
+      try { dims = JSON.parse(c.dimensions); } catch { dims = {}; }
+    } else if (typeof c.dimensions === 'object' && c.dimensions !== null) {
+      dims = c.dimensions;
+    }
+
+    let rawImages = [];
+    if (typeof c.images === 'string') {
+      try { rawImages = JSON.parse(c.images); } catch { rawImages = []; }
+    } else if (Array.isArray(c.images)) {
+      rawImages = c.images;
+    }
+
     const colors = parseColorOptions(c.color_options);
 
     const localImages = [];
     for (let imgIdx = 0; imgIdx < rawImages.length; imgIdx++) {
       const imgUrl = rawImages[imgIdx];
-      const filename = `item_${i + 1}_img_${imgIdx + 1}.jpg`;
+      const filename = `item_${c.id}_img_${imgIdx + 1}.jpg`;
       const optPath = await optimizeImage(imgUrl, filename);
       const base64 = fs.existsSync(optPath) 
         ? `data:image/jpeg;base64,${fs.readFileSync(optPath).toString('base64')}`
@@ -232,7 +228,10 @@ async function prepareAllData() {
 
     preparedItems.push({
       ...c,
-      ...enh,
+      catalogTitle: c.name,
+      skuCode: skuCode,
+      categoryLabel: meta.categoryLabel,
+      highlight: meta.highlight,
       dims,
       images: localImages,
       colors,
@@ -309,7 +308,7 @@ function generateHTML(items) {
     }
 
     /* ══════════════════════════════════════════════════
-       COVER PAGE
+       PAGE 1: CLEAN MINIMAL LOOKBOOK COVER
        ══════════════════════════════════════════════════ */
     .cover-page {
       padding: 24mm 22mm 20mm;
@@ -528,10 +527,11 @@ function generateHTML(items) {
       color: #2D6A4F;
     }
     .p-badge-code {
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
       color: var(--espresso);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
+      font-family: 'Plus Jakarta Sans', monospace;
     }
     .p-badge-note {
       font-size: 9px;
@@ -889,7 +889,7 @@ function generateHTML(items) {
     const rawWidth = cleanDimensionValue(chair.dims.width);
     const rawDepth = cleanDimensionValue(chair.dims.depth);
     
-    const heightDisplay = rawHeight ? `${rawHeight} Back Height` : (chair.name === 'BAR CHAIR' ? '48″ Back Height' : '36″ Back Height');
+    const heightDisplay = rawHeight ? `${rawHeight} Back Height` : (chair.category_id === 'cat_bar' ? '48″ Back Height' : '36″ Back Height');
     const seatDisplay = (rawWidth && rawDepth) ? `${rawWidth} W &times; ${rawDepth} D` : '18″ W &times; 17.5″ D';
     const frameMaterial = chair.material ? chair.material.toUpperCase() : 'HEAVY GAUGE STEEL';
 
@@ -899,7 +899,7 @@ function generateHTML(items) {
       <div class="p-topbar">
         <div class="p-brand-group">
           <span class="p-brand-name">AB FURNITURE</span>
-          <span class="p-brand-cat">&bull; ${chair.name === 'BAR CHAIR' ? 'BAR & COUNTER SEATING' : 'CAFE & COMMERCIAL SEATING'}</span>
+          <span class="p-brand-cat">&bull; ${chair.category_id === 'cat_bar' ? 'BAR & COUNTER SEATING' : 'CAFE & COMMERCIAL SEATING'}</span>
         </div>
         <div class="p-folio-num">ITEM ${pageNum} // ${String(totalCount).padStart(2, '0')}</div>
       </div>
@@ -915,7 +915,7 @@ function generateHTML(items) {
           </div>
           <div class="p-side-badge-card">
             <div class="p-badge-status">&bull; ${chair.stock_status === 'in_stock' ? 'In Stock & Ready' : 'Made to Order'}</div>
-            <div class="p-badge-code">${chair.modelCode}</div>
+            <div class="p-badge-code">SKU: ${chair.skuCode}</div>
             <div class="p-badge-note">Kathmandu Workshop Craft</div>
           </div>
         </div>
@@ -940,7 +940,7 @@ function generateHTML(items) {
         <div class="p-spec-block">
           <div class="p-spec-kicker">Frame & Base</div>
           <div class="p-spec-val">${frameMaterial}</div>
-          <div class="p-spec-subval">${chair.name === 'BAR CHAIR' ? 'Reinforced bar height base' : 'Reinforced commercial grade'}</div>
+          <div class="p-spec-subval">${chair.category_id === 'cat_bar' ? 'Reinforced bar height base' : 'Reinforced commercial grade'}</div>
         </div>
         <div class="p-spec-block">
           <div class="p-spec-kicker">Backrest Height</div>
@@ -954,7 +954,7 @@ function generateHTML(items) {
         </div>
         <div class="p-spec-block">
           <div class="p-spec-kicker">Warranty & Delivery</div>
-          <div class="p-spec-val">Structural Warranty</div>
+          <div class="p-spec-val">${chair.warranty || 'Structural Warranty'}</div>
           <div class="p-spec-subval">Free KTM White-Glove Dispatch</div>
         </div>
       </div>
@@ -1081,7 +1081,7 @@ async function main() {
   console.log('HTML written at:', htmlPath);
 
   const pdfPath = path.join(__dirname, '..', 'ABF_Cafe_Chairs_Catalog.pdf');
-  console.log('Generating 17-page PDF (15 products + Cover + Back)...');
+  console.log('Generating 17-page PDF with live website SKUs...');
 
   const possibleBrowsers = [
     'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
@@ -1101,7 +1101,7 @@ async function main() {
 
   if (fs.existsSync(pdfPath)) {
     const stats = fs.statSync(pdfPath);
-    console.log(`\n✅ 15-PRODUCT CATALOG PDF CREATED SUCCESSFULLY!`);
+    console.log(`\n✅ 15-PRODUCT CATALOG PDF CREATED WITH LIVE SKUS!`);
     console.log(`File: ${pdfPath}`);
     console.log(`Size: ${(stats.size / 1024 / 1024).toFixed(2)} MB`);
   } else {
